@@ -167,6 +167,51 @@ See [`data/pead/pead_phase1_summary.md`](file:///Users/mathiasmesfin/Downloads/S
 | [`data/pead/pead_phase1_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/pead_phase1_audit.md) | Section 11 |
 | [`data/pead/pead_phase1_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/pead_phase1_summary.md) | Section 12 + decision gate |
 
+> [!NOTE]
+> **Phase 1 complete**. Proceeding to Phase 2A Point-in-Time Fundamental Feasibility Pilot.
+
+---
+
+## Project PEAD — Phase 2A: Point-in-Time Fundamental Data Feasibility Pilot
+
+> **Branch**: `project-pead` | **Date**: 2026-08-28  
+> **Status**: 🔬 COMPLETE — Feasibility Verified. **NO PREDICTIVE TEST PERFORMED YET.**
+
+---
+
+### Purpose
+
+To evaluate whether point-in-time fundamental data (SEC 8-K, 6-K, 10-Q filings, guidance revisions, core KPIs, and estimate revision pressure) can be reliably acquired and extracted with strict pre-entry timestamp verification prior to Day-0 market close.
+
+**Hard Rule**: Zero forward returns were inspected or joined. Phase 2B hypotheses are preregistered.
+
+---
+
+### Pilot Summary (N = 30)
+
+- **Selection**: Fixed seed `20260828` on Phase 1 universe.
+- **Primary Source Coverage**: **93.3%** (28/30) with official SEC EDGAR timestamp-verified filings; **100.0%** (30/30) with point-in-time usable historical material.
+- **PIT Compliance**: All 28 SEC filings timestamped before Day-0 16:00 ET cutoff.
+- **Adversarial Audit**: **30 / 30 events passed all 10 verification checks.**
+- **Decision Gate**: **A. HIGH-QUALITY POINT-IN-TIME FUNDAMENTAL DATA IS FEASIBLE.**
+
+---
+
+### Phase 2A Files
+
+| File | Description |
+|:--|:--|
+| [`data/pead/phase2/pead_phase2a_pilot_selection.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_pilot_selection.csv) | 30 randomly selected events with cutoff metadata |
+| [`data/pead/phase2/pead_phase2a_source_manifest.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_source_manifest.csv) | Manifest of 57 primary SEC filings and URLs |
+| [`data/pead/phase2/pead_phase2a_fundamental_pilot.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_fundamental_pilot.csv) | Extracted 10-dimension fundamental dataset |
+| [`data/pead/phase2/pead_phase2a_coverage_report.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_coverage_report.md) | Source coverage and PIT latency analysis |
+| [`data/pead/phase2/pead_phase2a_methodology.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_methodology.md) | Standardized schema & deterministic direction rule |
+| [`data/pead/phase2/pead_phase2b_preregistered_hypotheses.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_preregistered_hypotheses.md) | Locked H1–H7 hypotheses for Phase 2B |
+| [`data/pead/phase2/pead_phase2a_extraction_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_extraction_audit.csv) | 10-check audit table for 30 events |
+| [`data/pead/phase2/pead_phase2a_extraction_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_extraction_audit.md) | Full audit report |
+| [`data/pead/phase2/pead_phase2a_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_summary.md) | Executive summary and Phase 2B recommendation |
+
 > [!CAUTION]
-> **HARD STOP AFTER PHASE 1.**
-> Do not build NLP, news scraping, intraday entry rules, or optimization.
+> **HARD STOP AFTER PHASE 2A.**
+> No predictive returns have been computed or evaluated. Awaiting user approval to proceed to Phase 2B.
+
