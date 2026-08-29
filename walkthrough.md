@@ -211,7 +211,73 @@ To evaluate whether point-in-time fundamental data (SEC 8-K, 6-K, 10-Q filings, 
 | [`data/pead/phase2/pead_phase2a_extraction_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_extraction_audit.md) | Full audit report |
 | [`data/pead/phase2/pead_phase2a_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2a_summary.md) | Executive summary and Phase 2B recommendation |
 
+> [!NOTE]
+> **Phase 2A & 2A.1 complete**. Reconciled and cryptographically frozen canonical fundamentals.
+
+---
+
+## Project PEAD — Phase 2B: Preregistered Fundamental Persistence Backtest
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Status**: 🔬 COMPLETE — Confirmatory Backtest Rendered.
+
+---
+
+### Purpose
+
+To perform an unadjusted, confirmatory backtest of the frozen point-in-time fundamental hypotheses (H1–H7) against 1D, 3D, 5D, 10D, and 20D forward returns from Day-0 market close.
+
+**Integrity Verification**: All three SHA-256 hashes matched before revealing forward returns. Zero tuning or threshold adjustments were performed after joining returns.
+
+---
+
+### Key Confirmatory Results
+
+1. **H1 (Agreement Superiority)**:
+   - **All Agreement (N=28)**: Mean 5D Signed MA Drift = **-1.828%** (Win rate: 42.9%, $t = -1.07, p = 0.2928$).
+   - **Phase 1 Baseline (N=585)**: Mean 5D Signed MA Drift = **-0.226%**.
+   - **Result**: **NOT SUPPORTED**. Fundamental agreement does not produce positive continuation or improve upon baseline.
+2. **H2 (Positive Agreement)**:
+   - **Long Agreement (N=14)**: Mean 5D MA Return = **-3.177%** (Win rate: 28.6%, $t = -1.49, p = 0.1604$).
+   - **Result**: **NOT SUPPORTED**. Long earnings winners with strong fundamentals experience short-term mean reversion.
+3. **H3 (Negative Agreement)**:
+   - **Short Agreement (N=14)**: Mean 5D Signed Drift = **-0.479%** (Win rate: 57.1%, $t = -0.18, p = 0.8612$). Raw 5D MA Return = +0.479%.
+   - **Result**: **NOT SUPPORTED**. Earnings losers with confirmed negative fundamentals bounce slightly rather than continuing downward.
+4. **H4 (Divergence Reversal)**:
+   - N=2 (`AVAV`, `CTAS`): Mean 5D Signed Drift = +1.857%.
+   - **Result**: **INCONCLUSIVE_DUE_TO_POWER**.
+5. **H5 (Estimate Revision Pressure Alignment)**:
+   - ERP-Aligned (N=23): Mean 5D Signed Drift = **-1.025%** vs. **-3.416%** for Non-Aligned ($\Delta = +2.39\%$).
+6. **H6 (Guidance Impact)**:
+   - Guidance-Aligned (N=17): Mean 5D Signed Drift = **-0.320%** vs. **-3.460%** for Guidance Neutral.
+7. **Score Gradient**:
+   - Pearson $r = +0.014$ ($p = 0.9415$), Spearman $r_s = -0.134$ ($p = 0.4793$), $R^2 = 0.000$. Zero linear or monotonic predictability.
+
+---
+
+### Decision Gate Verdict
+
 > [!CAUTION]
-> **HARD STOP AFTER PHASE 2A.**
-> No predictive returns have been computed or evaluated. Awaiting user approval to proceed to Phase 2B.
+> ### **VERDICT: C. NO FUNDAMENTAL PERSISTENCE SIGNAL**
+>
+> In this liquid, optionable equity universe, fundamental agreement does not rescue post-earnings drift. Prices tend to mean-revert rather than continue in the direction of the initial earnings reaction.
+
+---
+
+### Phase 2B Files
+
+| File | Description |
+|:--|:--|
+| [`data/pead/phase2/pead_phase2b_event_results.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_event_results.csv) | Full event-level table with forward returns & signed drift |
+| [`data/pead/phase2/pead_phase2b_primary_hypotheses.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_primary_hypotheses.md) | Confirmatory test results for H1, H2, H3 |
+| [`data/pead/phase2/pead_phase2b_secondary_hypotheses.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_secondary_hypotheses.md) | Supporting test results for H4–H7 |
+| [`data/pead/phase2/pead_phase2b_score_diagnostics.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_score_diagnostics.md) | Score gradient & asymmetry repair tests |
+| [`data/pead/phase2/pead_phase2b_economic_test.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_economic_test.md) | Transaction cost sensitivity (0/10/25/50 bps) |
+| [`data/pead/phase2/pead_phase2b_outlier_diagnostics.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_outlier_diagnostics.md) | Leave-one-out and trimmed mean diagnostics |
+| [`data/pead/phase2/pead_phase2b_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_summary.md) | Master summary and Phase 2C recommendation |
+
+> [!IMPORTANT]
+> **HARD STOP.**  
+> Fundamental PEAD continuation research is concluded.
+
 
