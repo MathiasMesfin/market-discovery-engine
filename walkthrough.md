@@ -276,8 +276,89 @@ To perform an unadjusted, confirmatory backtest of the frozen point-in-time fund
 | [`data/pead/phase2/pead_phase2b_outlier_diagnostics.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_outlier_diagnostics.md) | Leave-one-out and trimmed mean diagnostics |
 | [`data/pead/phase2/pead_phase2b_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_summary.md) | Master summary and Phase 2C recommendation |
 
+### Phase 2B.1: Results Reconciliation
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Status**: 🔬 COMPLETE — Event-Level Numerical Truth Reconciled in [`pead_phase2b_reconciliation.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_reconciliation.md).
+
+- **Reconciled Contradictions**: Reconciled economic table prose, baseline comparison wording, negative asymmetry bounce claims, and 5D vs 20D outlier extremes.
+- **Canonical Phase 2B Verdict**: **`C. NO SIGNAL`** (All Agreement Mean 5D Drift = -1.828%, $p = 0.2928$).
+
+---
+
+## Project PEAD — Phase 2C: Full-Universe Frozen Replication
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Status**: 🔬 COMPLETE — Out-of-Sample Full-Universe Replication Rendered.
+
+---
+
+### Purpose
+
+To apply the EXACT SAME frozen point-in-time fundamental methodology and deterministic scoring formulas to the remaining $N=559$ earnings events as a true out-of-sample replication test.
+
+---
+
+### Key Replication Results (N = 559)
+
+1. **H1 (Agreement Superiority)**:
+   - **All Agreement ($N=553$)**: Mean 5D Signed MA Drift = **-0.126%** (Win rate: 46.7%, $t = -0.38, p = 0.7078$).
+   - **Result**: **NOT SUPPORTED**. Replicated lack of post-earnings continuation at Day-0 close.
+2. **H2 (Positive Agreement)**:
+   - **Long Agreement ($N=290$)**: Mean 5D MA Return = **+0.341%** (Win rate: 49.3%, $t = +0.75, p = 0.4564$).
+   - **Result**: **NOT SUPPORTED** (statistically indistinguishable from zero, $p = 0.4564$).
+3. **H3 (Negative Agreement)**:
+   - **Short Agreement ($N=263$)**: Mean 5D Signed Drift = **-0.641%** (Win rate: 43.7%, $t = -1.30, p = 0.1938$). Raw 5D MA Return = +0.641% (upward mean-reversion bounce).
+   - **Result**: **NOT SUPPORTED**.
+4. **H4 (Divergence Reversal)**:
+   - Divergence Reversal ($N=2$): Mean 5D Reversal Return = **+1.683%** (Win rate: 100.0%).
+5. **H5 (ERP Alignment)**:
+   - ERP-Aligned ($N=436$): Mean 5D Drift = **-0.025%** vs. **-0.522%** for Non-Aligned.
+6. **H6 (Guidance Impact)**:
+   - Guidance-Aligned ($N=210$): Mean 5D Drift = **+0.072%** vs. **-0.255%** for Guidance-Neutral.
+7. **Score Gradient**:
+   - Pearson $r = +0.001$ ($p = 0.9841$), Spearman $r_s = -0.001$ ($p = 0.9804$), $R^2 = 0.000$.
+
+---
+
+### Final Decision Gate Verdict
+
+> [!CAUTION]
+> ### **FINAL VERDICT: C. NO POST-EARNINGS FUNDAMENTAL EDGE AT DAY-0 CLOSE**
+>
+> Point-in-time fundamental information available prior to Day-0 market close does **not** produce statistically or economically viable continuation drift. Post-earnings market reactions in this liquid equity universe achieve price discovery efficiently by Day-0 close, followed by mild mean reversion.
+
+---
+
+### Next Research Gate
+
+1. **Day-0 Close Fundamental PEAD Research**: **TERMINATED.**
+2. **Future Research Recommendation**: **PROJECT PEAD-INTRADAY** (evaluating intraday 9:30 AM – 12:00 PM entry windows prior to Day-0 closing price discovery).
+
+---
+
+### Phase 2C Files
+
+| File | Description |
+|:--|:--|
+| [`data/pead/phase2/pead_phase2b_reconciliation.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2b_reconciliation.md) | Comprehensive Phase 2B reconciliation matrix |
+| [`data/pead/phase2/pead_phase2c_replication_universe.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_replication_universe.csv) | List of 559 replication events prior to extraction |
+| [`data/pead/phase2/pead_phase2c_preregistered_replication.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_preregistered_replication.md) | Frozen replication hypotheses & methodology |
+| [`data/pead/phase2/pead_phase2c_source_manifest.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_source_manifest.csv) | SEC filing and source documentation manifest |
+| [`data/pead/phase2/pead_phase2c_CANONICAL_frozen_fundamentals.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_CANONICAL_frozen_fundamentals.parquet) | Frozen replication fundamental dataset |
+| [`data/pead/phase2/pead_phase2c_freeze_manifest.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_freeze_manifest.md) | SHA-256 cryptographic verification hashes |
+| [`data/pead/phase2/pead_phase2c_event_results.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_event_results.csv) | Full event-level results with forward returns |
+| [`data/pead/phase2/pead_phase2c_primary_replication.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_primary_replication.md) | Confirmatory test results for H1, H2, H3 |
+| [`data/pead/phase2/pead_phase2c_secondary_replication.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_secondary_replication.md) | Secondary test results for H4–H7 |
+| [`data/pead/phase2/pead_phase2c_pilot_vs_replication.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_pilot_vs_replication.md) | Pilot ($N=30$) vs Replication ($N=559$) comparison |
+| [`data/pead/phase2/pead_phase2c_economic_test.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_economic_test.md) | Transaction cost sensitivity (0/10/25/50 bps) |
+| [`data/pead/phase2/pead_phase2c_stability.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_stability.md) | Chronological split and monthly stability |
+| [`data/pead/phase2/pead_phase2c_outlier_diagnostics.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_outlier_diagnostics.md) | Leave-one-out and trimmed mean diagnostics |
+| [`data/pead/phase2/pead_phase2c_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/phase2/pead_phase2c_summary.md) | Master summary and final determination |
+
 > [!IMPORTANT]
-> **HARD STOP.**  
-> Fundamental PEAD continuation research is concluded.
+> **HARD STOP MAINTAINED.**  
+> Research complete. Intraday PEAD study is recommended for separate project authorization.
+
 
 
