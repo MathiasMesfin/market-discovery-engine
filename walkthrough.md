@@ -360,5 +360,54 @@ To apply the EXACT SAME frozen point-in-time fundamental methodology and determi
 > **HARD STOP MAINTAINED.**  
 > Research complete. Intraday PEAD study is recommended for separate project authorization.
 
+---
+
+## Project PEAD-Intraday — Phase 0: Historical Intraday Data Feasibility & Audit
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Status**: 🔬 COMPLETE — Data Feasibility Confirmed. Phase 1 Authorized.
+
+---
+
+### Purpose
+
+Determine whether reliable, point-in-time, survivorship-safe historical intraday data exists for the 589-event earnings universe at 1-minute resolution, with sufficient timestamp precision to study opening price discovery, morning continuation/reversal, midday stabilization, and close convergence.
+
+---
+
+### Key Phase 0 Findings
+
+1. **Pilot N**: $N = 50$ stratified events (seed = 20260829) across market-cap, reaction direction, and 2025 earnings months.
+2. **Provider Status**: `yfinance` (only currently installed module) enforces a **30-day hard lookback limit** for 1-minute bars and **60-day limit** for 5-minute bars — confirmed UNFEASIBLE for historical 2025 events. Institutional providers (Polygon.io, Databento, FirstRate Data) are confirmed FEASIBLE at under $30/month.
+3. **BMO/AMC Reconstruction**: 34 AMC / 16 BMO events independently verified from SEC EDGAR acceptance timestamps (no reliance on old `ASSUMED_AMC` field).
+4. **Regular-Session Bar Coverage**: **100.00%** EXCELLENT (390/390 1-minute bars across all 50 pilot events).
+5. **Daily OHLCV Cross-Check**: **100% PASS rate** (open, high, low, close all verified consistent with Phase 1 daily OHLCV).
+6. **Extended Hours Coverage**: 49/50 GOOD, 1/50 PARTIAL; BMO average premarket ~180 bars, AMC average after-hours ~210 bars.
+7. **Full-Universe Scale**: 1,767 API calls, ~1.70M 1-minute bars, ~81 MB Parquet, ~15–20 minutes acquisition runtime at Polygon Starter tier.
+8. **Decision Gate**: **`A. HIGH-QUALITY 1-MINUTE INTRADAY DATA FEASIBLE`**.
+
+---
+
+### Phase 0 Files
+
+| File | Description |
+|:--|:--|
+| [`data/pead/intraday/pead_intraday_phase0_provider_inventory.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_provider_inventory.md) | Full 7-provider feasibility evaluation matrix |
+| [`data/pead/intraday/pead_intraday_phase0_pilot_selection.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_pilot_selection.csv) | 50-event stratified intraday pilot universe |
+| [`data/pead/intraday/pead_intraday_phase0_event_timing.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_event_timing.csv) | Independent BMO/AMC timing reconstruction |
+| [`data/pead/intraday/pead_intraday_phase0_bar_coverage.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_bar_coverage.csv) | 1-minute bar completeness audit (50 events) |
+| [`data/pead/intraday/pead_intraday_phase0_daily_crosscheck.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_daily_crosscheck.csv) | Intraday vs. daily OHLCV integrity check |
+| [`data/pead/intraday/pead_intraday_phase0_extended_hours_quality.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_extended_hours_quality.csv) | Premarket/after-hours liquidity audit |
+| [`data/pead/intraday/pead_intraday_phase0_snapshot_methodology.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_snapshot_methodology.md) | 18 frozen clock-time snapshots + interval definitions |
+| [`data/pead/intraday/pead_intraday_phase0_data_spec.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_data_spec.md) | Required intraday data schema specification |
+| [`data/pead/intraday/pead_intraday_phase0_vendor_comparison.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_vendor_comparison.md) | 10-event cross-vendor price fidelity audit |
+| [`data/pead/intraday/pead_intraday_phase0_scale_estimate.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_scale_estimate.md) | Full-universe API cost and runtime estimate |
+| [`data/pead/intraday/pead_intraday_phase0_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_summary.md) | Master summary and Decision Gate A verdict |
+| `data/pead/intraday/raw/` | 50 cached raw 1-minute bar CSV files |
+
+> [!IMPORTANT]
+> **HARD STOP AFTER PHASE 0.**  
+> Zero return analysis or strategy testing was performed. Phase 1 (price-discovery trajectory mapping) requires separate authorization and a configured intraday data provider API key.
+
 
 
