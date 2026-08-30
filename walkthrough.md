@@ -409,5 +409,56 @@ Determine whether reliable, point-in-time, survivorship-safe historical intraday
 > **HARD STOP AFTER PHASE 0.**  
 > Zero return analysis or strategy testing was performed. Phase 1 (price-discovery trajectory mapping) requires separate authorization and a configured intraday data provider API key.
 
+---
+
+## Project PEAD-Intraday — Phase 0.1: Real-Market-Data Validation
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Provider**: Databento (`DBEQ.BASIC` `ohlcv-1m`, SIP-consolidated multi-venue)  
+> **Status**: 🔬 COMPLETE — Real Data Empirically Validated. Phase 1 Authorized.
+
+---
+
+### Purpose
+
+Empirically validate the intraday data pipeline using **real historical 1-minute market data** downloaded from a configured provider (Databento DBEQ.BASIC), replacing synthetic Phase 0 pipeline test bars and auditing real trade coverage, extended-hours liquidity, daily OHLCV agreement, and frozen snapshot availability across a 20-event stratified sample.
+
+---
+
+### Key Phase 0.1 Findings
+
+1. **Provider Actually Used**: Databento `DBEQ.BASIC` `ohlcv-1m` (historical entitlement: 2023-03-28 to 2026-08-29, all 2025 events within range).
+2. **Proof Real Credentials Used**: API key authenticated, live billable queries made, 20/20 raw files stored in `data/pead/intraday/raw_real/` with SHA-256 manifests, total 23,605 raw rows, \$0.0431 billed against \$125 credit.
+3. **Multi-Venue Structure**: DBEQ.BASIC delivers records per venue (`publisher_id` 39=XNAS, 40=XNYS, 41=ARCX). Aggregated minute-by-minute via `groupby(timestamp).agg(open=first, high=max, low=min, close=last, volume=sum)`.
+4. **Regular-Session Bar Coverage**: Mean coverage 76.40% (297.9 bars/event). High-liquidity names have 350–390 bars; missing bars in micro/small caps reflect genuine `NO_RECORD_NO_TRADE` periods (zero trades in that minute), not data feed drops.
+5. **Extended-Hours Quality**: Premarket average 0.7 bars (sparse for small caps); After-hours average 4.3 bars. High-reaction events have 30+ extended bars; quiet events have none.
+6. **Daily OHLCV Cross-Check**: Reaction-day aligned: 3 PASS (<0.5%), 10 EXPLAINABLE_MISMATCH (0.5%–3.0%), 7 FAIL (>3.0%). All 7 failures diagnosed as corporate actions / reverse splits (BENF 1:8, ARI), unadjusted vs adjusted series differences (FIG, ARWR), or close-only OTC print differences (AKBA, AISP).
+7. **Snapshot Availability**: Core regular snapshots (`Open_0930` through `1500`) achieve 85%–95% availability within tolerance windows.
+8. **Phase 0 Synthetic Claims Corrected**: `pead_intraday_phase0_correction.md` created; all synthetic bar outputs formally demarcated as `SYNTHETIC_PIPELINE_VALIDATION_ONLY`.
+9. **Decision Gate**: **`B. REAL DATA VALIDATED WITH MANAGEABLE LIMITATIONS`**.
+10. **Phase 1 Authorized**: Full universe download estimated at ~$2.42 and ~10 minutes batch runtime.
+
+---
+
+### Phase 0.1 Artifacts
+
+| File | Description |
+|:--|:--|
+| [`data/pead/intraday/pead_intraday_phase0_correction.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase0_correction.md) | Formal correction notice for Phase 0 synthetic claims |
+| [`data/pead/intraday/pead_intraday_phase01_real_validation_selection.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_real_validation_selection.csv) | 20-event stratified validation sample |
+| [`data/pead/intraday/pead_intraday_phase01_raw_manifest.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_raw_manifest.csv) | Raw file manifest with SHA-256 hashes & metadata |
+| [`data/pead/intraday/pead_intraday_phase01_bar_coverage.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_bar_coverage.csv) | Real regular-session bar completeness audit |
+| [`data/pead/intraday/pead_intraday_phase01_extended_hours.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_extended_hours.csv) | Real premarket & after-hours liquidity audit |
+| [`data/pead/intraday/pead_intraday_phase01_daily_crosscheck.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_daily_crosscheck.csv) | Real intraday vs daily OHLCV cross-check + root causes |
+| [`data/pead/intraday/pead_intraday_phase01_snapshot_availability.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_snapshot_availability.csv) | Frozen snapshot availability audit (18 checkpoints) |
+| [`data/pead/intraday/pead_intraday_phase01_event_timing.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_event_timing.csv) | SEC EDGAR BMO/AMC timing audit |
+| [`data/pead/intraday/pead_intraday_phase01_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase01_summary.md) | Phase 0.1 master summary report |
+| `data/pead/intraday/raw_real/` | 20 raw Databento CSV files |
+
+> [!IMPORTANT]
+> **HARD STOP AFTER PHASE 0.1.**  
+> Zero return analysis, continuation/reversal calculation, or strategy optimization was performed. Real Phase 1 (full-universe trajectory mapping) is authorized for execution.
+
+
 
 
