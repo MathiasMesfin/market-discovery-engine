@@ -686,6 +686,76 @@ Empirically validate the intraday data pipeline using **real historical 1-minute
 > **HARD STOP AFTER PHASE 2B.**  
 > Zero strategy optimization, machine learning models, or automated Phase 2C execution was performed. All results are strictly confirmatory.
 
+---
+
+## Project PEAD-Intraday — Phase 2C: Multi-Year Untouched Temporal Replication
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Replication Universe**: $N=1{,}080$ Untouched Events (2023: $N=360$, 2024: $N=480$, 2026 YTD: $N=240$)  
+> **Target Window**: `09:30 → 10:30 ET` | **Primary Measure**: Signed SPY-Adjusted Return  
+> **Status**: 🏆 TEMPORAL REPLICATION CONFIRMED — Decision Gate A (STRONG TEMPORAL REPLICATION)
+
+---
+
+### Scientific Language Corrections Applied
+
+1. **Phase 2B Re-labelled**: "preregistered sample-split confirmation within the Aug–Dec 2025 development period" (not temporal OOS).
+2. **09:30→16:00 window**: `POST_HOC_DESCRIPTIVE_ONLY` — carries zero confirmatory weight.
+3. **Causal language expunged**: "opening-direction/fundamental divergence events" replaces prior flow/sentiment language.
+
+---
+
+### Core Replication Findings
+
+| Period | Agreement N | H1 Mean | Median | Win Rate | Cluster 95% CI | Net @ 25bps | Economic Gate | Effect vs 2025 |
+|:---|---:|---:|---:|---:|---:|---:|:---:|---:|
+| **2025 Reference** | 254 | **+0.86%** | +0.64% | 60.2% | [+0.45%, +1.27%] | +0.61% | PASS | 100% (Base) |
+| **2023 Untouched** | 243 | **+0.78%** | +0.88% | 58.8% | [+0.48%, +1.07%] | +0.53% | PASS | 90.3% |
+| **2024 Untouched** | 290 | **+0.63%** | +0.46% | 56.6% | [+0.44%, +0.84%] | +0.38% | PASS | 73.1% |
+| **2026 YTD Untouched** | 150 | **+0.62%** | +0.78% | 61.3% | [+0.31%, +0.99%] | +0.37% | PASS | 72.4% |
+| **Pooled Untouched** | 683 | **+0.68%** | +0.68% | 58.4% | [+0.53%, +0.83%] | +0.43% | PASS | 79.1% |
+
+1. **Effect Shrinkage**: Pooled untouched mean (+0.68%) is approximately **79.1%** of the 2025 development mean (+0.86%). A smaller but positive, economically viable effect.
+2. **H1–H6 All Replicate** (BH-FDR SIGNIFICANT on H1, H2, H3, H4, H5, H6). H7 (Structural Drivers) NOT significant.
+3. **Score Gradient Replicates**: Pearson $r = 0.296$ ($p < 0.0001$), OLS slope **+0.231% per score point**.
+4. **Divergence Reversal Replicates Strongly**: $N=286$, Mean = **+1.28%** ($t = 9.41, p < 0.0001$).
+5. **BMO/AMC Asymmetry Reverses**: In replication, BMO and AMC are statistically indistinguishable (+0.70% vs +0.67%). The 2025 development asymmetry (BMO ≈ 0.01% vs AMC ≈ +1.12%) was development-period-specific.
+
+### Scientific Verdict
+
+> The frozen fundamental/opening-reaction interaction replicated across previously untouched historical periods (2023, 2024, 2026 YTD) under the tested execution assumptions. Prospective validation would still be required.
+
+### Phase 2C Artifacts (`data/pead/intraday/phase2c/`)
+
+| Artifact | Description |
+|:--|:--|
+| [`pead_intraday_phase2c_phase2b_protocol_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_phase2b_protocol_audit.md) | Scientific language corrections & absolute freeze rules |
+| [`pead_intraday_phase2c_universe_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_universe_audit.csv) | Universe N per period (starting, price-eligible, final usable) |
+| [`pead_intraday_phase2c_event_timing.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_event_timing.csv) | Release timing classification (BMO/AMC/session) per event |
+| [`pead_intraday_phase2c_source_provenance.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_source_provenance.csv) | Source provenance with VERIFIED_PIT consensus classification |
+| [`pead_intraday_phase2c_consensus_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_consensus_audit.csv) | PIT consensus forensic audit (100% VERIFIED_PIT) |
+| [`pead_intraday_phase2c_contamination_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_contamination_audit.md) | Contamination audit — PASSED (zero leakage) |
+| [`pead_intraday_phase2c_CANONICAL_2023.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_CANONICAL_2023.parquet) | Frozen 09:30 ET canonical fundamentals — 2023 |
+| [`pead_intraday_phase2c_CANONICAL_2024.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_CANONICAL_2024.parquet) | Frozen 09:30 ET canonical fundamentals — 2024 |
+| [`pead_intraday_phase2c_CANONICAL_2026YTD.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_CANONICAL_2026YTD.parquet) | Frozen 09:30 ET canonical fundamentals — 2026 YTD |
+| [`pead_intraday_phase2c_freeze_manifest.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_freeze_manifest.md) | SHA-256 cryptographic freeze hashes (8 artifacts frozen pre-returns) |
+| [`pead_intraday_phase2c_event_dataset.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_event_dataset.parquet) | Complete 1,080-event joined return + fundamental dataset |
+| [`pead_intraday_phase2c_h1_replication.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_h1_replication.md) | Primary H1 per-year and pooled replication results |
+| [`pead_intraday_phase2c_h2_h7_replication.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_h2_h7_replication.md) | Locked H2–H7 replication with BH-FDR |
+| [`pead_intraday_phase2c_score_gradient.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_score_gradient.md) | Score gradient regression & correlations (pooled) |
+| [`pead_intraday_phase2c_economic_feasibility.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_economic_feasibility.md) | Economic friction audit per year and pooled |
+| [`pead_intraday_phase2c_outliers.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_outliers.md) | Outlier robustness, trimmed means, leave-one-out range |
+| [`pead_intraday_phase2c_bmo_amc.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_bmo_amc.md) | BMO vs AMC replication (asymmetry does not replicate) |
+| [`pead_intraday_phase2c_secondary_windows.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_secondary_windows.md) | Preregistered secondary target windows (09:45, 10:00, 11:00, 12:00) |
+| [`pead_intraday_phase2c_year_comparison.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_year_comparison.md) | Year-by-year master replication table |
+| [`pead_intraday_phase2c_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2c/pead_intraday_phase2c_summary.md) | Master summary & formal replication gate A verdict |
+
+> [!IMPORTANT]
+> **HARD STOP AFTER PHASE 2C.**  
+> Zero retuning, optimization, feature engineering, or ML was performed. No Phase 3 was automatically created.
+> If Gate A/B: a prospective Phase 3 paper-trade shadow test using the frozen system is recommended.
+
+
 
 
 
