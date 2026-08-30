@@ -459,6 +459,64 @@ Empirically validate the intraday data pipeline using **real historical 1-minute
 > **HARD STOP AFTER PHASE 0.1.**  
 > Zero return analysis, continuation/reversal calculation, or strategy optimization was performed. Real Phase 1 (full-universe trajectory mapping) is authorized for execution.
 
+---
+
+## Project PEAD-Intraday — Phase 1: Real Intraday Price-Discovery Mapping
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Provider**: Databento (`DBEQ.BASIC` `trades` schema, trade-level nanosecond consolidated)  
+> **Universe**: Full 589-Event Dataset ($N=568$ analyzed, $N=477$ denominator-stable)  
+> **Status**: 🔬 COMPLETE — Intraday Price Discovery Empirically Mapped.
+
+---
+
+### Key Scientific Findings
+
+1. **Normalization Resolved**: Upgraded from venue-level `ohlcv-1m` to **trade-level nanosecond consolidation** (`trades` schema, 7,976,490 raw trade records, \$5.71 total acquisition cost). Exact chronological first/last trade prices define 1-minute bars.
+2. **Master Timing Curve**:
+   * **Open (09:30 ET)**: **34.36%** of total Day-0 close move is priced in at market open.
+   * **09:45 ET**: **66.31%** is priced in (first 15 minutes).
+   * **10:00 ET**: **67.66%** is priced in (first 30 minutes).
+   * **10:30 ET**: **75.39%** is priced in (first 1 hour).
+   * **11:00 ET**: **78.90%** is priced in.
+   * **12:00 (Noon)**: **83.73%** is priced in.
+   * **16:00 (Close)**: **100.00%**.
+3. **Pessimism Speed Asymmetry**: Negative reactions gap down faster (**42.86%** at open, **70.19%** at 10:00) than positive reactions (**30.70%** at open, **61.57%** at 10:00).
+4. **Morning Overshoot Frequency**: **49.1%** of all earnings events exhibit an intraday overshoot ($|\text{Morning Max Move}| > 105\%$ of final Day-0 close move), reaching **51.3%** in negative reactions. This provides the empirical structural explanation for post-close mean reversion.
+5. **Reaction Magnitude**: Large moves ($>11.6\%$) gap and incorporate **61.2%** at the open; small moves ($<2.8\%$) incorporate only **9.2%** at the open, drifting gradually until noon.
+6. **Market-Cap Homogeneity**: Price discovery speed is remarkably similar across market-cap buckets (Mid+: 36.3% at open, 68.9% at 10:00; Small: 34.0% at open, 66.7% at 10:00; Micro: 35.3% at open, 65.9% at 10:00).
+7. **Decision Gate**: **`C. MATERIAL PRICE DISCOVERY CONTINUES THROUGH MORNING`**.
+8. **Phase 2 Preregistration**: **JUSTIFIED** — focusing on the 09:30–10:30 opening adjustment window.
+
+---
+
+### Phase 1 Artifacts
+
+| File | Description |
+|:--|:--|
+| [`data/pead/intraday/pead_intraday_phase1_databento_normalization.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_databento_normalization.md) | Databento multi-venue semantics & trade-level consolidation design |
+| [`data/pead/intraday/pead_intraday_phase1_normalization_recheck.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_normalization_recheck.csv) | 20-event recheck comparing venue aggregation vs trade-level bars |
+| [`data/pead/intraday/pead_intraday_phase1_normalized_crosscheck.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_normalized_crosscheck.csv) | Full universe daily OHLCV crosscheck + root causes |
+| [`data/pead/intraday/pead_intraday_phase1_event_eligibility.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_event_eligibility.csv) | Pre-return eligibility flags (Clean, Corporate Action, Halt, etc.) |
+| [`data/pead/intraday/pead_intraday_phase1_event_timing.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_event_timing.csv) | Final BMO/AMC reaction-day mapping for 589 events |
+| [`data/pead/intraday/pead_intraday_phase1_raw_manifest.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_raw_manifest.csv) | Complete manifest of 589 event raw trade parquet files |
+| [`data/pead/intraday/pead_intraday_phase1_snapshots.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_snapshots.parquet) | Frozen 18 clock-time snapshots for all 568 events |
+| [`data/pead/intraday/pead_intraday_phase1_price_discovery.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_price_discovery.csv) | Event-level price-discovery metrics, fractions, and intervals |
+| [`data/pead/intraday/pead_intraday_phase1_interval_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_interval_summary.md) | Timing curve percentiles, interval returns, and magnitude quartiles |
+| [`data/pead/intraday/pead_intraday_phase1_positive_negative.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_positive_negative.md) | Positive vs negative reaction price discovery comparison |
+| [`data/pead/intraday/pead_intraday_phase1_bmo_amc.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_bmo_amc.md) | BMO vs AMC price discovery and extended-hours counts |
+| [`data/pead/intraday/pead_intraday_phase1_marketcap_liquidity.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_marketcap_liquidity.md) | Market-cap liquidity breakdown |
+| [`data/pead/intraday/pead_intraday_phase1_overshoot.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_overshoot.md) | Morning overshoot, reversal rates, and T50/T75/T90 milestones |
+| [`data/pead/intraday/pead_intraday_phase1_market_adjusted.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_market_adjusted.md) | SPY-adjusted price-discovery robustness |
+| [`data/pead/intraday/pead_intraday_phase1_stability.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_stability.md) | Monthly stability across Aug–Dec 2025 and H1 vs H2 |
+| [`data/pead/intraday/pead_intraday_phase1_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/pead_intraday_phase1_summary.md) | Master summary and Decision Gate C verdict |
+| `data/pead/intraday/full_raw_real/` | 589 raw trade parquet files + 5 monthly SPY trade files |
+
+> [!IMPORTANT]
+> **HARD STOP AFTER PHASE 1.**  
+> Zero strategy testing, PnL backtesting, or fundamental conditioning was executed. Phase 1 provides purely descriptive mapping of the intraday price-discovery curve.
+
+
 
 
 
