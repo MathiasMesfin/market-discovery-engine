@@ -622,6 +622,71 @@ Empirically validate the intraday data pipeline using **real historical 1-minute
 > **HARD STOP AFTER PHASE 2A.**  
 > Zero returns were joined to fundamentals. Zero hypothesis testing or backtesting was performed. All canonical fundamental inputs and hypotheses are cryptographically frozen.
 
+---
+
+## Project PEAD-Intraday — Phase 2B: Preregistered Confirmatory Morning Persistence Backtest
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Evaluation Sample**: Confirmatory $N=385$ Events ($N=254$ Agreement, $N=124$ Divergence, $N=7$ Neutral)  
+> **Target Window**: `09:30 → 10:30 ET` (Market Open to 10:30 AM)  
+> **Status**: 🏆 CONFIRMED — Decision Gate A
+
+---
+
+### Core Findings & Hypothesis Tests
+
+1. **Cryptographic Verification**: All 11 Phase 2A SHA-256 hashes verified 100% before revealing any forward returns.
+2. **Primary Hypothesis H1 (Fundamental Agreement Continuation)**:
+   * **CONFIRMATORY RESULT**: Mean signed SPY-adjusted 09:30→10:30 return is **+0.86%** (Median: **+0.64%**, Win Rate: **60.2%**, $t = 2.95$, $p = 0.0035$).
+   * **Cluster Bootstrap 95% CI**: **[+0.45%, +1.27%]** with $P(\text{Mean} > 0) = 100.0\%$.
+   * **Incremental Edge**: **+0.88%** vs. All Confirmatory Events ($-0.02\%$) and **+2.68%** vs. Divergence Events ($-1.81\%$).
+3. **Subgroup Hypotheses**:
+   * **H2 (Positive Agreement)**: **+1.19%** mean ($t = 3.10, p = 0.0023$) vs. All Positive Openings (+0.36%, incremental: **+0.84%**).
+   * **H3 (Negative Agreement)**: **+0.47%** mean ($t = 1.05, p = 0.2968$) vs. All Negative Openings ($-0.43\%$, incremental: **+0.90%**). Reverses morning panic losses into net positive continuation.
+   * **H4 (Divergence Reversal)**: **+1.81%** mean reversal return ($t = 5.48, p < 0.0001$).
+   * **H5 (OPEN_ERP Aligned)**: **+0.94%** mean ($t = 2.90, p = 0.0041$) vs. Non-aligned ($-1.22\%$, difference: **+2.16%**).
+   * **H6 (Guidance Aligned)**: **+1.22%** mean ($t = 2.55, p = 0.0124$) vs. No-change ($-0.22\%$, difference: **+1.45%**).
+4. **Economic Feasibility**:
+   * Gross Return: **+0.86%** | Net @ 10 bps: **+0.76%** | Net @ 25 bps: **+0.61%** | Net @ 50 bps: **+0.36%**.
+   * **Economic Gate**: **PASS** ($> +0.25\%$ gross and $> 0$ net of 25 bps).
+5. **Multiple Testing Control**: H1, H2, H4, H5, H6 remain statistically significant under Benjamini-Hochberg FDR ($q=0.05$).
+6. **Decision Gate**: **`A. ROBUST INCREMENTAL MORNING FUNDAMENTAL EDGE`**.
+
+---
+
+### Phase 2B Artifacts (`data/pead/intraday/phase2/`)
+
+| File | Description |
+|:--|:--|
+| [`pead_intraday_phase2b_join_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_join_audit.md) | Join audit between frozen fundamentals and intraday prices |
+| [`pead_intraday_phase2b_event_dataset.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_event_dataset.parquet) | Complete 549-event return and fundamental joined dataset |
+| [`pead_intraday_phase2b_confirmatory_h1.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_confirmatory_h1.md) | Primary H1 confirmatory statistical evaluation & baseline comparison |
+| [`pead_intraday_phase2b_positive_agreement.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_positive_agreement.md) | H2 positive agreement continuation report |
+| [`pead_intraday_phase2b_negative_agreement.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_negative_agreement.md) | H3 negative agreement continuation report |
+| [`pead_intraday_phase2b_divergence.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_divergence.md) | H4 divergence reversal report |
+| [`pead_intraday_phase2b_open_erp.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_open_erp.md) | H5 OPEN_ERP signal report |
+| [`pead_intraday_phase2b_guidance.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_guidance.md) | H6 official guidance signal report |
+| [`pead_intraday_phase2b_structural.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_structural.md) | H7 structural vs transitory drivers report |
+| [`pead_intraday_phase2b_score_gradient.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_score_gradient.md) | Score gradient regression and correlation analysis |
+| [`pead_intraday_phase2b_gap_magnitude.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_gap_magnitude.md) | Opening gap magnitude interaction analysis |
+| [`pead_intraday_phase2b_negative_overshoot.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_negative_overshoot.md) | Negative overshoot vs continuation discrimination |
+| [`pead_intraday_phase2b_secondary_windows.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_secondary_windows.md) | Secondary target window evaluation (09:45, 10:00, 11:00, 12:00, Close) |
+| [`pead_intraday_phase2b_economic_feasibility.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_economic_feasibility.md) | Friction sensitivity & economic feasibility gate |
+| [`pead_intraday_phase2b_marketcap_liquidity.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_marketcap_liquidity.md) | Market cap and liquidity robustness |
+| [`pead_intraday_phase2b_bmo_amc.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_bmo_amc.md) | BMO vs AMC structural comparison |
+| [`pead_intraday_phase2b_management_tone.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_management_tone.md) | Management tone analysis in AMC subset |
+| [`pead_intraday_phase2b_consensus_surprises.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_consensus_surprises.md) | Point-in-time consensus surprise correlations |
+| [`pead_intraday_phase2b_outliers.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_outliers.md) | Trimmed means, leave-one-out range, and top contributors |
+| [`pead_intraday_phase2b_stability.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_stability.md) | Within-period chronological stability across months and halves |
+| [`pead_intraday_phase2b_multiple_testing.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_multiple_testing.md) | Benjamini-Hochberg FDR control |
+| [`pead_intraday_phase2b_discovery_vs_confirmatory.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_discovery_vs_confirmatory.md) | Discovery vs Confirmatory stability comparison |
+| [`pead_intraday_phase2b_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2/pead_intraday_phase2b_summary.md) | Master Summary and Decision Gate A verdict |
+
+> [!IMPORTANT]
+> **HARD STOP AFTER PHASE 2B.**  
+> Zero strategy optimization, machine learning models, or automated Phase 2C execution was performed. All results are strictly confirmatory.
+
+
 
 
 
