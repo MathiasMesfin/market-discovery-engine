@@ -1,0 +1,4 @@
+Year,N_Seasons,Fixed_Quota_Per_Season,Expected_N,Actual_N,Count_Matches_Quota,Selection_Rule,Original_Source_Universe,Construction_Mechanism,Included,Exclusion_Reason
+2023,3,120,360,360,True,"np.random.default_rng(20260829).choice(532_tickers, 120, replace=False)",2025 Phase 1 ticker list (pead_phase1_event_dataset.parquet),SYNTHETIC_FIXED_QUOTA,360,NOT_A_REAL_HISTORICAL_EARNINGS_CALENDAR
+2024,4,120,480,480,True,"np.random.default_rng(20260829).choice(532_tickers, 120, replace=False)",2025 Phase 1 ticker list (pead_phase1_event_dataset.parquet),SYNTHETIC_FIXED_QUOTA,480,NOT_A_REAL_HISTORICAL_EARNINGS_CALENDAR
+2026YTD,2,120,240,240,True,"np.random.default_rng(20260829).choice(532_tickers, 120, replace=False)",2025 Phase 1 ticker list (pead_phase1_event_dataset.parquet),SYNTHETIC_FIXED_QUOTA,240,NOT_A_REAL_HISTORICAL_EARNINGS_CALENDAR

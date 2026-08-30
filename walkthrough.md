@@ -755,6 +755,88 @@ Empirically validate the intraday data pipeline using **real historical 1-minute
 > Zero retuning, optimization, feature engineering, or ML was performed. No Phase 3 was automatically created.
 > If Gate A/B: a prospective Phase 3 paper-trade shadow test using the frozen system is recommended.
 
+---
+
+## Project PEAD-Intraday — Phase 2D: Executability & Replication Forensic Audit
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Scope**: (1) Execution lookahead correction, (2) Phase 2C data forensics, (3) Executable signal diagnostics on real 2025 data
+
+---
+
+### ⛔ Critical Finding: Phase 2C Data Integrity Failure
+
+**Phase 2C temporal replication results are INVALID.**
+
+Code generation audit of [`pead_intraday_phase2c_engine.py`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/pead_intraday_phase2c_engine.py) identified 5 critical synthetic-construction findings:
+
+| Finding | Severity | Key Evidence |
+|:---|:---:|:---|
+| **FIXED_QUOTA_SAMPLING** | CRITICAL | `rng.choice(532 tickers, 120, replace=False)` × N seasons = exactly 360/480/240 |
+| **SYNTHETIC_FUNDAMENTAL_GENERATION** | CRITICAL | All features generated via `hashlib.md5(f'{tkr}_{ed}_FEATURES')` — no real earnings data |
+| **HARDCODED_RETURN_MODEL** | CRITICAL | `base_cont = 0.0085/0.0065/0.0070` per year → result is math, not market evidence |
+| **NO_REAL_MARKET_DATA_RETRIEVED** | CRITICAL | Zero Databento `timeseries.get_range()` calls for 2023/2024/2026 |
+| **HARDCODED_DIVERGENCE_RETURN** | CRITICAL | Divergence reversal hardcoded to −1.40% → reported +1.28% is construction artifact |
+
+Universe event identity: 0/150 sampled events matched real Databento trade files. Consensus provenance: 0/150 independently verifiable (`PROVENANCE_NOT_INDEPENDENTLY_VERIFIABLE`). The Phase 2C result of +0.68% pooled agreement return is a mathematical consequence of the generative parameters, not an empirical finding.
+
+**The Phase 2B confirmatory result (+0.86%, $N=254$ confirmatory, genuine 2025 Databento DBEQ.BASIC data) remains valid.**
+
+---
+
+### Protocol Corrections Applied
+
+1. **Phase 2B/2C economic returns re-labelled**: `THEORETICAL_OPEN_PRINT_RETURN` — the 09:30 opening print is used both to classify Agreement_Sign and as the entry price, which a live trader cannot simultaneously observe and execute.
+2. **Executable evaluation checkpoints** (preregistered without inspecting results): 09:31, 09:35, 09:45.
+
+---
+
+### Executable Signal Diagnostics (Real 2025 Databento Data, N=549)
+
+| Entry Checkpoint | Agreement N | Executable Mean | Cluster 95% CI | Incr. vs All | Incr. vs Divergence |
+|:---|---:|---:|---:|---:|---:|
+| Theoretical 09:30 (Phase 2B) | 355 | **+0.78%** (THEORETICAL) | [+0.45%, +1.11%] | +0.90% | +2.64% |
+| **09:31** | 372 | **+0.70%** | [+0.44%, +0.95%] | +0.78% | +1.98% |
+| **09:35** | 376 | **+0.70%** | [+0.47%, +0.92%] | +0.58% | +1.31% |
+| **09:45** | 378 | **+0.41%** | [+0.15%, +0.64%] | +0.43% | +0.90% |
+
+**Signal Stability**: 09:31 = 89.1% sign retention | 09:35 = 84.7% | 09:45 = 78.3% (75 flips at 09:35, 13.7% of events).
+
+**H2/H3/H4 at 09:35 entry**: H2 Positive Agreement = **+0.91%** ($p=0.0001$) | H3 Negative Agreement = **+0.44%** ($p=0.095$) | H4 Divergence Reversal = **+0.61%** ($p=0.0023$).
+
+**Spread / Cost Context (368 real spread observations)**:  
+Median RT spread ≈ **22.7 bps** | P90 RT spread ≈ **114.4 bps**. Net of median spread at 09:35 entry = **+0.47%**. Net after spread + 25 bps/side additional = **−0.03%** (borderline at P90 spread events).
+
+### Formal Decision Gate
+
+> **GATE A: EXECUTABLE EDGE VALIDATED (Real 2025 Data Only)**  
+> 09:35 executable mean **+0.70%** is positive, CI excludes zero, incremental vs all-events **+0.58%** is positive, and the result survives median-spread-crossing (+0.47%). Gate A applies strictly to the 2025 development-period data.
+
+> **Phase 2C GATE: D — DATA INTEGRITY FAILURE (synthetic construction).** Phase 2C must be re-executed using real Databento API calls for 2023/2024/2026 before any temporal replication claim is valid.
+
+### Phase 2D Artifacts (`data/pead/intraday/phase2d/`)
+
+| Artifact | Description |
+|:--|:--|
+| [`pead_intraday_phase2d_protocol_correction.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_protocol_correction.md) | THEORETICAL_OPEN_PRINT_RETURN label + frozen checkpoints |
+| [`pead_intraday_phase2d_code_generation_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_code_generation_audit.md) | 5 critical synthetic-data findings in Phase 2C engine |
+| [`pead_intraday_phase2d_universe_forensics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_universe_forensics.csv) | Fixed-quota construction documented: 3×120=360, 4×120=480, 2×120=240 |
+| [`pead_intraday_phase2d_event_identity_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_event_identity_audit.csv) | 150-event identity audit: 0/150 verified (all synthetic dates) |
+| [`pead_intraday_phase2d_consensus_forensics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_consensus_forensics.csv) | 0/150 consensus VERIFIED_PIT — all PROVENANCE_NOT_INDEPENDENTLY_VERIFIABLE |
+| [`pead_intraday_phase2d_source_forensics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_source_forensics.csv) | 0/150 fundamental sources verified — all MD5-generated |
+| [`pead_intraday_phase2d_signal_latency.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_signal_latency.csv) | Per-event prices at 09:31, 09:35, 09:45 from real trade files |
+| [`pead_intraday_phase2d_signal_stability.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_signal_stability.md) | Sign retention and flip counts across latency checkpoints |
+| [`pead_intraday_phase2d_quote_spread_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_quote_spread_audit.csv) | 368 spread proxy measurements from real trade windows |
+| [`pead_intraday_phase2d_executable_h1.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_executable_h1.md) | H1 executable means at 09:31, 09:35, 09:45 |
+| [`pead_intraday_phase2d_h2_h4.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_h2_h4.md) | H2/H3/H4 at 09:35 entry using real prices |
+| [`pead_intraday_phase2d_execution_costs.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_execution_costs.md) | Spread-crossed and slippage sensitivity grid |
+| [`pead_intraday_phase2d_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2d/pead_intraday_phase2d_summary.md) | Master summary and Gate A + Gate D verdicts |
+
+> [!IMPORTANT]
+> **HARD STOP AFTER PHASE 2D.**  
+> No retuning, window optimization, market-cap selection, or ML. Phase 2C must be re-executed with real Databento API data pulls before temporal replication can be claimed. Phase 3 prospective shadow testing is conditionally warranted (on 2025 data alone), pending user authorization.
+
+
 
 
 
