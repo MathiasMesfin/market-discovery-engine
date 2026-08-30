@@ -809,7 +809,7 @@ Median RT spread ≈ **22.7 bps** | P90 RT spread ≈ **114.4 bps**. Net of medi
 
 ### Formal Decision Gate
 
-> **GATE A: EXECUTABLE EDGE VALIDATED (Real 2025 Data Only)**  
+> **GATE A: Executable historical edge demonstrated in 2025; temporal replication pending.**  
 > 09:35 executable mean **+0.70%** is positive, CI excludes zero, incremental vs all-events **+0.58%** is positive, and the result survives median-spread-crossing (+0.47%). Gate A applies strictly to the 2025 development-period data.
 
 > **Phase 2C GATE: D — DATA INTEGRITY FAILURE (synthetic construction).** Phase 2C must be re-executed using real Databento API calls for 2023/2024/2026 before any temporal replication claim is valid.
@@ -834,7 +834,84 @@ Median RT spread ≈ **22.7 bps** | P90 RT spread ≈ **114.4 bps**. Net of medi
 
 > [!IMPORTANT]
 > **HARD STOP AFTER PHASE 2D.**  
-> No retuning, window optimization, market-cap selection, or ML. Phase 2C must be re-executed with real Databento API data pulls before temporal replication can be claimed. Phase 3 prospective shadow testing is conditionally warranted (on 2025 data alone), pending user authorization.
+> No retuning, window optimization, market-cap selection, or ML. Phase 2C must be re-executed with real Databento API data pulls before temporal replication can be claimed.
+
+---
+
+## Project PEAD-Intraday — Phase 2C-R: Real-Data Temporal Replication Rebuild
+
+> **Branch**: `project-pead` | **Date**: 2026-08-29  
+> **Replication Universe**: $N=387$ Genuine Historical Earnings Events across 2023 & 2024 ($N=193$ in 2023, $N=194$ in 2024)  
+> **Market Data Source**: Live Databento Historical API (`DBEQ.BASIC`, `trades` & `ohlcv-1m`) — 544 real trade files acquired  
+> **Target Window**: `09:35 → 10:30 ET` | **Primary Measure**: Executable Signed SPY-Adjusted Return  
+> **Status**: 🔬 REPLICATION COMPLETE — Formal Decision Gate: **C. NO TEMPORAL REPLICATION**
+
+---
+
+### Scientific Record Correction Summary
+
+1. **Original Phase 2C Withdrawn**: Commit `e494788` used synthetic generative hashing and hardcoded returns (`+0.68%`). All original Phase 2C artifacts marked `INVALID_SYNTHETIC_DO_NOT_USE`.
+2. **Phase 2C-R Zero-Synthetic-Data Mandate**: 100% genuine historical earnings events and live Databento trade data. Zero synthetic values.
+3. **Consensus Provenance Rule**: Consensus status classified strictly as `UNVERIFIED` (preventing provider fabrication).
+
+---
+
+### Real-Data Temporal Replication Results (09:35 $\to$ 10:30 ET)
+
+| Period | Agreement N | H1 Mean | Median | Win Rate | Std Dev | Cluster Bootstrap 95% CI | t-stat | p-value | Incr. vs All | Incr. vs Div |
+|:---|---:|---:|---:|---:|---:|:---:|---:|---:|---:|---:|
+| **2023 Real** | 93 | **-0.04%** | -0.02% | 50.5% | 2.14% | [-0.37%, +0.39%] | -0.17 | 0.8647 | +0.02% | +0.06% |
+| **2024 Real** | 79 | **+0.08%** | +0.06% | 49.4% | 1.81% | [-0.36%, +0.34%] | +0.39 | 0.6998 | +0.05% | +0.11% |
+| **Pooled (2023+2024)** | 172 | **+0.01%** | +0.00% | 50.0% | 1.99% | [-0.24%, +0.28%] | +0.08 | 0.9355 | **+0.04%** | **+0.08%** |
+
+* **Effect Shrinkage**: Pooled 2023+2024 mean of **+0.01%** represents only **1.9%** of the 2025 development-period effect size (+0.70%), attenuating by **-0.69%**.
+* **Score Gradient**: Pearson $r = 0.0121$ ($p = 0.8125$), Spearman $\rho = -0.0128$ ($p = 0.8021$).
+* **Transaction Cost Impact**: Median observed round-trip spread proxy was **28.7 bps**. Net return after median spread is **-0.27%**.
+* **Hypotheses H1–H7**: Zero hypotheses reached Benjamini-Hochberg FDR significance at $q=0.05$.
+
+---
+
+### Exact Scientific Conclusion
+
+> When evaluated on 100% genuine historical market data from Databento DBEQ.BASIC across 2023 and 2024, the morning fundamental/opening-reaction agreement effect observed in 2025 (+0.70% at 09:35) **did not statistically replicate outside 2025** (pooled mean +0.01%, $p=0.9355$, cluster 95% CI [-0.24%, +0.28%]). The edge was specific to the 2025 development period. Net of realistic execution spreads (-0.27%), the historical signal does not generate positive tradeable returns in 2023–2024.
+>
+> **Prospective Phase 3 live trading / paper-trade shadow deployment is NOT authorized.**
+
+---
+
+### Formal Replication Gate: **C. NO TEMPORAL REPLICATION**
+
+### Phase 2C-R Artifacts (`data/pead/intraday/phase2cr/`)
+
+| Artifact | Description |
+|:--|:--|
+| [`pead_intraday_phase2cr_scientific_record_correction.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_scientific_record_correction.md) | Official declaration invalidating synthetic Phase 2C |
+| [`pead_intraday_phase2cr_universe.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_universe.csv) | Natural candidate earnings universe (2,115 natural events) |
+| [`pead_intraday_phase2cr_event_identity.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_event_identity.csv) | Real historical event identity and verification audit |
+| [`pead_intraday_phase2cr_event_timing.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_event_timing.csv) | Verified BMO/AMC session classifications |
+| [`pead_intraday_phase2cr_raw_market_manifest.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_raw_market_manifest.csv) | Manifest of 393 downloaded Databento trade files |
+| [`pead_intraday_phase2cr_market_data_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_market_data_audit.csv) | Chronological trade consistency audit (99.0% pass rate) |
+| [`pead_intraday_phase2cr_source_provenance.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_source_provenance.csv) | Source provenance with strict UNVERIFIED consensus status |
+| [`pead_intraday_phase2cr_consensus_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_consensus_audit.csv) | Audit confirming zero fabricated consensus providers |
+| [`pead_intraday_phase2cr_contamination_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_contamination_audit.md) | Contamination audit — PASSED (zero leakage) |
+| [`pead_intraday_phase2cr_CANONICAL_2023.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_CANONICAL_2023.parquet) | Frozen canonical fundamentals — 2023 (193 real events) |
+| [`pead_intraday_phase2cr_CANONICAL_2024.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_CANONICAL_2024.parquet) | Frozen canonical fundamentals — 2024 (194 real events) |
+| [`pead_intraday_phase2cr_freeze_manifest.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_freeze_manifest.md) | SHA-256 pre-return cryptographic freeze hashes |
+| [`pead_intraday_phase2cr_event_dataset.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_event_dataset.parquet) | Joined 387-event real return and fundamental dataset |
+| [`pead_intraday_phase2cr_h1.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_h1.md) | Primary H1 09:35→10:30 replication table |
+| [`pead_intraday_phase2cr_h2_h7.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_h2_h7.md) | Locked H2–H7 results |
+| [`pead_intraday_phase2cr_score_gradient.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_score_gradient.md) | Score gradient regression ($r=0.0121$) |
+| [`pead_intraday_phase2cr_execution_costs.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_execution_costs.md) | Quoted spread distribution and friction sensitivity |
+| [`pead_intraday_phase2cr_marketcap.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_marketcap.md) | Market-cap breakdown (Micro, Small, Mid+) |
+| [`pead_intraday_phase2cr_bmo_amc.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_bmo_amc.md) | BMO vs AMC session breakdown |
+| [`pead_intraday_phase2cr_outliers.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_outliers.md) | Trimmed means, leave-one-out range, top positive/negative |
+| [`pead_intraday_phase2cr_multiple_testing.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_multiple_testing.md) | Benjamini-Hochberg FDR multiple testing table |
+| [`pead_intraday_phase2cr_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/pead/intraday/phase2cr/pead_intraday_phase2cr_summary.md) | Master summary and Gate C verdict |
+
+> [!IMPORTANT]
+> **HARD STOP AFTER PHASE 2C-R.**  
+> Zero strategy retuning, optimization, feature tinkering, or machine learning. Phase 3 prospective shadow testing is NOT authorized.
+
 
 
 

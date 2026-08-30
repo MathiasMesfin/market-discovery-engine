@@ -40,7 +40,7 @@ The Phase 2B confirmatory result (+0.86%, $N=254$ confirmatory, genuine 2025 Dat
 
 ---
 
-## Formal Decision Gate: **A. EXECUTABLE EDGE VALIDATED (Real 2025 Data Only)**
+## Formal Decision Gate: **A. Executable historical edge demonstrated in 2025; temporal replication pending.**
 
 *Reason*: 09:35 executable mean positive, incremental vs all-events positive, survives spread-crossing.
 
