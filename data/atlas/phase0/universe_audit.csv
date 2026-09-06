@@ -1,0 +1,2 @@
+total_universe_tickers,common_equities_screened,formation_min_price,formation_min_market_cap,start_year,end_year,total_years,ownership_source,ownership_holdings_date,ownership_filing_deadline,formation_date_rule,entry_rule,exit_rule,survivorship_handling,delisting_handling
+5741,5524,2.00,250000000.0,2013,2024,12,SEC DERA Form 13F Data Sets,Q2 June 30,August 14 (<=45 days),October 20 Close,First Trading Day Post-Oct 31 Open,10th Trading Day Post-Entry Close,Active historical universe evaluated point-in-time,Final trading price captured prior to delisting

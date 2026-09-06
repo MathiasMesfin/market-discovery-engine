@@ -1,0 +1,13 @@
+year,oct_post_spread_pct,aug_placebo_spread_pct,sep_placebo_spread_pct,oct_exceeds_aug,oct_exceeds_sep
+2013,-0.956,6.434,12.989,False,False
+2014,-14.361,-6.454,2.651,False,False
+2015,-13.532,18.801,6.386,False,False
+2016,-10.218,-24.109,-0.287,True,False
+2017,6.642,-0.747,3.473,True,True
+2018,-17.694,6.953,12.557,False,False
+2019,19.186,2.183,13.498,True,True
+2020,5.003,-2.798,7.006,True,False
+2021,-5.248,-1.791,2.746,False,False
+2022,20.508,-2.956,8.504,True,True
+2023,10.814,0.346,-21.18,True,True
+2024,4.678,6.127,6.133,False,False
