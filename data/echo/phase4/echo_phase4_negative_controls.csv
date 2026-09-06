@@ -1,0 +1,6 @@
+Control_Experiment,MAE_pp,MAE_Improvement_Pct,Empirical_p_Value,Description
+True Echo Signal (Model 3 vs Model 2),3.884,74.0,0.0,True causal transmission shocks added to Model 2
+"Control 1: Random Target Permutation (1,000 Runs Median)",13.8801,7.09,,Source Echo packages shuffled across unrelated target companies
+Control 1: Random Target Permutation (99th Percentile),12.6881,15.07,,Top 1% outcome of random cross-company shuffling
+Control 2: Inverted Transmission Signs,26.7656,-79.17,,"Inverting economic transmission direction (e.g., positive capex -> negative demand)"
+Control 3: Remove Echo (Model 2 Baseline),14.9387,0.0,,Street consensus + target historical autoregressive trend only

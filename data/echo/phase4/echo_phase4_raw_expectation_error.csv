@@ -1,0 +1,4 @@
+Group,N,Mean_Realized_Street_Error_pp,Median_Realized_Street_Error_pp,Directional_Hit_Rate_Pct,Mean_Normalized_Street_Error
+ECHO_EXPECTS_ABOVE_STREET,151,16.616,13.0371,100.0,2.1038
+ECHO_EXPECTS_BELOW_STREET,31,-8.5584,-7.2316,96.77,-1.5981
+GROUP_DIFFERENCE_ABOVE_MINUS_BELOW,182,25.1743,20.2686,98.39,3.702

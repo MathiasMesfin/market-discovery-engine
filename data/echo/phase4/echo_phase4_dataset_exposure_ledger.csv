@@ -1,0 +1,127 @@
+Year,Data_Type,Exposure_Status,Prior_Phase,Evidence_File,Evidence_Field,Notes,Eligible_For_Development,Eligible_For_Untouched_Validation
+2020,Source earnings disclosures,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2020,Source operational metrics,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2020,Source event timestamps,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1 / Phase 2,data/echo/phase2/echo_phase2_event_timestamps.csv,Source_Event_Timestamp,Recorded to determine executable entry windows.,True,False
+2020,A->B relationship evidence,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2020,Exposure weights,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2020,Target historical fundamentals,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_baseline_vs_echo.csv,"Prior_Target_Value, Baseline_Forecast",Used to establish target autoregressive momentum baseline.,True,False
+2020,Target future fundamentals,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2020,Target KPI outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2020,Target revenue outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,Actual_Target_Value (segment revenue YoY),Segment revenue KPIs were evaluated; total revenue was not separately modeled.,True,False
+2020,Target EPS outcomes,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2020,PIT Street EPS consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2020,PIT Street revenue consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2020,PIT Street KPI consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2020,PIT Street segment consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2020,Analyst estimate revisions,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2020,Target stock prices,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2020,Target forward returns,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2020,Earnings-event target returns,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2021,Source earnings disclosures,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2021,Source operational metrics,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2021,Source event timestamps,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1 / Phase 2,data/echo/phase2/echo_phase2_event_timestamps.csv,Source_Event_Timestamp,Recorded to determine executable entry windows.,True,False
+2021,A->B relationship evidence,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2021,Exposure weights,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2021,Target historical fundamentals,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_baseline_vs_echo.csv,"Prior_Target_Value, Baseline_Forecast",Used to establish target autoregressive momentum baseline.,True,False
+2021,Target future fundamentals,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2021,Target KPI outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2021,Target revenue outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,Actual_Target_Value (segment revenue YoY),Segment revenue KPIs were evaluated; total revenue was not separately modeled.,True,False
+2021,Target EPS outcomes,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2021,PIT Street EPS consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2021,PIT Street revenue consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2021,PIT Street KPI consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2021,PIT Street segment consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2021,Analyst estimate revisions,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2021,Target stock prices,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2021,Target forward returns,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2021,Earnings-event target returns,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2022,Source earnings disclosures,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2022,Source operational metrics,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2022,Source event timestamps,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1 / Phase 2,data/echo/phase2/echo_phase2_event_timestamps.csv,Source_Event_Timestamp,Recorded to determine executable entry windows.,True,False
+2022,A->B relationship evidence,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2022,Exposure weights,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2022,Target historical fundamentals,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_baseline_vs_echo.csv,"Prior_Target_Value, Baseline_Forecast",Used to establish target autoregressive momentum baseline.,True,False
+2022,Target future fundamentals,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2022,Target KPI outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2022,Target revenue outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,Actual_Target_Value (segment revenue YoY),Segment revenue KPIs were evaluated; total revenue was not separately modeled.,True,False
+2022,Target EPS outcomes,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2022,PIT Street EPS consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2022,PIT Street revenue consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2022,PIT Street KPI consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2022,PIT Street segment consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2022,Analyst estimate revisions,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2022,Target stock prices,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2022,Target forward returns,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2022,Earnings-event target returns,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2023,Source earnings disclosures,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2023,Source operational metrics,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1 to calculate source operational shock.,True,False
+2023,Source event timestamps,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1 / Phase 2,data/echo/phase2/echo_phase2_event_timestamps.csv,Source_Event_Timestamp,Recorded to determine executable entry windows.,True,False
+2023,A->B relationship evidence,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2023,Exposure weights,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 0 / Phase 1,data/echo/phase1/echo_phase1_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Derived from 10-Ks and frozen causal graph.,True,False
+2023,Target historical fundamentals,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1,data/echo/phase1/echo_phase1_baseline_vs_echo.csv,"Prior_Target_Value, Baseline_Forecast",Used to establish target autoregressive momentum baseline.,True,False
+2023,Target future fundamentals,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2023,Target KPI outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo fundamental prediction.,True,False
+2023,Target revenue outcomes,OUTCOME_EXPOSED,Phase 1,data/echo/phase1/echo_phase1_target_outcomes.parquet,Actual_Target_Value (segment revenue YoY),Segment revenue KPIs were evaluated; total revenue was not separately modeled.,True,False
+2023,Target EPS outcomes,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2023,PIT Street EPS consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2023,PIT Street revenue consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2023,PIT Street KPI consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2023,PIT Street segment consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2023,Analyst estimate revisions,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2023,Target stock prices,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2023,Target forward returns,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2023,Earnings-event target returns,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2024,Source earnings disclosures,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1.2,data/echo/phase1_2/echo_phase1_2_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1.2 2024 fundamental holdout.,True,False
+2024,Source operational metrics,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1.2,data/echo/phase1_2/echo_phase1_2_source_events.csv,"Current_Value, Metric_Name",Loaded in Phase 1.2 2024 fundamental holdout.,True,False
+2024,Source event timestamps,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1.2 / Phase 2,data/echo/phase2/echo_phase2_event_timestamps.csv,Source_Event_Timestamp,Recorded to determine executable entry windows.,True,False
+2024,A->B relationship evidence,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1.2,data/echo/phase1_2/echo_phase1_2_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Frozen from Phase 1.,True,False
+2024,Exposure weights,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1.2,data/echo/phase1_2/echo_phase1_2_relationship_graph.csv,"Relationship_Evidence, Target_Exposure",Frozen from Phase 1.,True,False
+2024,Target historical fundamentals,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 1.2,data/echo/phase1_2/echo_phase1_2_baseline_vs_echo.csv,"Prior_Target_Value, Baseline_Forecast",Target autoregressive trajectory baseline.,True,False
+2024,Target future fundamentals,OUTCOME_EXPOSED,Phase 1.2,data/echo/phase1_2/echo_phase1_2_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo prediction.,True,False
+2024,Target KPI outcomes,OUTCOME_EXPOSED,Phase 1.2,data/echo/phase1_2/echo_phase1_2_target_outcomes.parquet,"Actual_Target_Value, Actual_Target_Change",Target operating outcome was compared against Echo prediction.,True,False
+2024,Target revenue outcomes,OUTCOME_EXPOSED,Phase 1.2,data/echo/phase1_2/echo_phase1_2_target_outcomes.parquet,Actual_Target_Value,Segment revenue KPIs evaluated.,True,False
+2024,Target EPS outcomes,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2024,PIT Street EPS consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2024,PIT Street revenue consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2024,PIT Street KPI consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2024,PIT Street segment consensus,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2024,Analyst estimate revisions,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2024,Target stock prices,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2024,Target forward returns,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 2,data/echo/phase2/echo_phase2_returns.parquet,Day5_Signed_Abnormal_Return,Used in Phase 2 market incorporation discovery.,True,False
+2024,Earnings-event target returns,UNTOUCHED,None,None,None,Never accessed or loaded in any prior Echo phase.,True,False
+2025,Source earnings disclosures,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 3,data/echo/phase3/echo_phase3_2025_source_events.csv,"Reported_Rev_Growth_Pct, Shock_Magnitude",Source earnings growth used to generate blind directional signals.,False,False
+2025,Source operational metrics,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 3,data/echo/phase3/echo_phase3_2025_source_events.csv,"Reported_Rev_Growth_Pct, Shock_Magnitude",Source earnings growth used to generate blind directional signals.,False,False
+2025,Source event timestamps,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 3,data/echo/phase3/echo_phase3_2025_source_events.csv,"Entry_Timestamp, Session",Entry timing for alpha validation.,False,False
+2025,A->B relationship evidence,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 3,data/echo/phase3/echo_phase3_relationship_graph.csv,"W_AB, Sign_AB",Frozen causal relationship graph.,False,False
+2025,Exposure weights,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 3,data/echo/phase3/echo_phase3_relationship_graph.csv,"W_AB, Sign_AB",Frozen causal relationship graph.,False,False
+2025,Target historical fundamentals,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,Target future fundamentals,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,Target KPI outcomes,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,Target revenue outcomes,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,Target EPS outcomes,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,PIT Street EPS consensus,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,PIT Street revenue consensus,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,PIT Street KPI consensus,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,PIT Street segment consensus,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,Analyst estimate revisions,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2025,Target stock prices,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 3,data/echo/phase3/echo_phase3_returns.parquet,"SAR_5D, R_Target_5D",Daily price series used in Phase 3 alpha holdout validation.,False,False
+2025,Target forward returns,ACCESSED_BUT_NOT_USED_FOR_EXPECTATION_MODEL,Phase 3,data/echo/phase3/echo_phase3_returns.parquet,"SAR_5D, R_Target_5D",Daily price series used in Phase 3 alpha holdout validation.,False,False
+2025,Earnings-event target returns,UNTOUCHED,None,None,None,"Phase 3 did NOT load 2025 target operating fundamentals, EPS actuals, consensus, or revisions.",False,False
+2026,Source earnings disclosures,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Source operational metrics,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Source event timestamps,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,A->B relationship evidence,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Exposure weights,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Target historical fundamentals,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Target future fundamentals,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Target KPI outcomes,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Target revenue outcomes,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Target EPS outcomes,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,PIT Street EPS consensus,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,PIT Street revenue consensus,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,PIT Street KPI consensus,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,PIT Street segment consensus,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Analyst estimate revisions,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Target stock prices,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Target forward returns,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True
+2026,Earnings-event target returns,UNTOUCHED,None,None,None,Strictly untouched across all 18 dimensions. Reserved under UNTOUCHED_ECHO_EXPECTATION_VALIDATION.,False,True

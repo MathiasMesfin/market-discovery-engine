@@ -1,0 +1,4 @@
+Model,Information_Set,MAE_pp,Median_AE_pp,Directional_Accuracy_Pct,Incremental_MAE_Impr_Pct,Paired_t_stat,p_value
+Model 1: Street Only,PIT Street Consensus Only,15.249,12.549,,,,
+Model 2: Street + Target History,PIT Street Consensus + Target 4Q Autoregressive Trend,14.9387,12.0327,71.98,2.03,,
+Model 3: Street + History + Echo,Model 2 + Transmitted Causal Echo Shocks,3.884,2.4359,99.45,74.0,17.5586,6.086057483413941e-41

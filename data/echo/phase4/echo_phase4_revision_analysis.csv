@@ -1,0 +1,4 @@
+Analysis_Dimension,Sample_N,Metric_Value,Description
+Revision Direction Agreement with Echo,182,100.00%,Percentage of target reports where subsequent analyst revisions matched Echo predicted direction
+Mean Absolute Post-T0 Revision Magnitude,182,2.994 pp,Average magnitude of sell-side consensus revision occurring between T0 and target earnings
+Median Days to First Material Revision,182,10.0 days,Median time elapsed from Source A public disclosure to first observable sell-side target revision
