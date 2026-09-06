@@ -1,0 +1,87 @@
+{
+  "A_ACCOUNTING_RESTATEMENT_OR_ERROR": {
+    "patterns": [
+      "re-?state(ment|d|s)?",
+      "(cannot|should\\s+no\\s+longer)\\s+be\\s+relied\\s+upon|non-reliance",
+      "accounting\\s+errors?|errors?\\s+in\\s+(the\\s+)?accounting",
+      "errors?\\s+in\\s+(the\\s+)?(previously\\s+issued\\s+)?financial",
+      "prior\\s+period\\s+(reclassification|error|adjustment|revision)",
+      "correction\\s+of\\s+(an?\\s+|prior\\s+)?errors?|accounting\\s+irregularit",
+      "revenue\\s+recognition\\s+errors?"
+    ],
+    "severity": "SEVERE"
+  },
+  "B_AUDIT_OR_INTERNAL_CONTROL": {
+    "patterns": [
+      "material\\s+weakness(es)?",
+      "internal\\s+controls?\\s+(over\\s+financial\\s+reporting|deficienc|weakness)",
+      "(audit|special)\\s+committee\\s+(investigation|inquiry|review)",
+      "independent\\s+(investigation|inquiry|review)",
+      "auditor\\s+(resignation|resigned|dismissed|terminated|change)|former\\s+auditor|dismissed.*?auditor",
+      "bf\\s+borgers|pcaob",
+      "(auditor|independent\\s+registered|accounting\\s+firm).*?(unable\\s+to\\s+complete|additional\\s+time|complete\\s+its\\s+(audit|review)|finalize\\s+its|has\\s+not\\s+(yet\\s+)?completed|appointed|resigned)",
+      "auditors?\\s+in\\s+time\\s+for\\s+(filing|the\\s+filing)",
+      "review\\s+process\\s+with\\s+the\\s+auditor|complete\\s+the\\s+review\\s+of.*?auditor",
+      "auditing\\s+standards|confirmation\\s+of\\s+balances\\s+required\\s+by\\s+auditing",
+      "control\\s+deficienc(ies|y)",
+      "no\\s+longer\\s+permitted\\s+to\\s+practice"
+    ],
+    "severity": "SEVERE"
+  },
+  "C_FINANCIAL_DISTRESS_OR_GOING_CONCERN_PROCESS": {
+    "patterns": [
+      "going\\s+concern|substantial\\s+doubt",
+      "bankruptcy|chapter\\s+11|chapter\\s+7|insolven|liquidation",
+      "debt\\s+restructur|restructuring\\s+(support|agreement|plan)",
+      "liquidity\\s+(constraints?|issues?|shortages?|deficienc|needs?)",
+      "working\\s+capital\\s+and\\s+liquidity",
+      "forbearance|default\\s+on|event\\s+of\\s+default|covenant\\s+(breach|violation|default)",
+      "financing\\s+negotiations?|strategic\\s+alternatives?"
+    ],
+    "severity": "SEVERE"
+  },
+  "D_TRANSACTION_OR_CORPORATE_COMPLEXITY": {
+    "patterns": [
+      "merger|acquisition|business\\s+combination|divestiture|spin-off",
+      "de-spac|spac\\s+transaction|reverse\\s+merger|reverse\\s+takeover|corporate\\s+structuring",
+      "complex\\s+transaction|purchase\\s+price\\s+allocation|acquired\\s+business"
+    ],
+    "severity": "EXCLUDED"
+  },
+  "E_OPERATIONAL_OR_SYSTEM_DELAY": {
+    "patterns": [
+      "erp\\s+(system|conversion|implementation|migration)",
+      "software\\s+(conversion|implementation|failure|outage)",
+      "system\\s+(conversion|implementation|outage|migration|failure|transition)",
+      "data\\s+(migration|conversion|integration)",
+      "it\\s+system\\s+(failure|issue)"
+    ],
+    "severity": "ROUTINE"
+  },
+  "F_ROUTINE_ADMINISTRATIVE": {
+    "patterns": [
+      "additional\\s+time\\s+(is|was)?\\s*(needed|required|to\\s+prepare|for\\s+compilation|to\\s+complete|to\\s+finalize|for\\s+filing)",
+      "needs?\\s+(additional\\s+)?time\\s+to\\s+(prepare|review|finalize)",
+      "compilation\\s+and\\s+review|compilation\\s+of\\s+(the\\s+)?financial|compilation,\\s+dissemination",
+      "in\\s+the\\s+process\\s+of\\s+(compiling|finalizing|completing|preparing)",
+      "unable\\s+to\\s+(compile|complete|finalize|prepare)\\s+(the\\s+|its\\s+)?(necessary\\s+)?financial",
+      "delays?\\s+in\\s+(completing|assembling|preparing|finalizing|obtaining)",
+      "administrative\\s+(and\\s+accounting\\s+)?delays?|routine\\s+administrative|legal\\s+counsel",
+      "time\\s+constraints?",
+      "without\\s+unreasonable\\s+effort\\s+(and|or)\\s+expense",
+      "undue\\s+(hardship|burden|effort|expense)",
+      "finalize\\s+(the\\s+|its\\s+)?financial\\s+statements",
+      "complete\\s+the\\s+preparation|has\\s+not\\s+completed\\s+the\\s+preparation",
+      "staffing\\s+(limitation|issue|challenge)",
+      "file\\s+its\\s+form\\s+10-[kq].*?within\\s+the\\s+prescribed\\s+time\\s+period",
+      "imposed\\s+time\\s+constraints?",
+      "requires?\\s+(additional|more|extra)\\s+time",
+      "not\\s+been\\s+able\\s+to\\s+complete\\s+(the\\s+|its\\s+)?financial",
+      "(cannot|could\\s+not)\\s+(be\\s+(filed|completed|prepared)|complete\\s+the\\s+preparation)",
+      "not\\s+completed\\s+the\\s+preparation",
+      "more\\s+time\\s+to\\s+complete|more\\s+time\\s+to\\s+prepare",
+      "preparation\\s+of\\s+(the\\s+|its\\s+)?(annual|quarterly)?\\s*report"
+    ],
+    "severity": "ROUTINE"
+  }
+}

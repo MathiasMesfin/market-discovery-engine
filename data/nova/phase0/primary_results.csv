@@ -1,0 +1,2 @@
+severe_n,routine_n,severe_mean_ar20_pct,severe_median_ar20_pct,routine_mean_ar20_pct,routine_median_ar20_pct,diff_means_pp,boot_ci_low_pct,boot_ci_high_pct,boot_ci_excludes_zero,welch_t_stat,welch_p,wilcoxon_p_onesided,p_severe_worse,severe_beta_regression,severe_beta_p,dedup_issuer_year_n,dedup_diff_pp,dedup_p,dedup_directional_negative,price_mapping_pct,blind_signal_sha256
+1596,6244,4.588,-2.482,3.859,-3.542,0.729,-1.965,3.804,False,0.5,0.6174,0.9974,0.523,-0.020742,0.1427,4305,-1.379,0.4294,True,98.3,9156a105d50e0792f57511844d25e022bf7c445cc3407b103322224489540831
