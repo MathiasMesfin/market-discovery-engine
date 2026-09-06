@@ -1,111 +1,128 @@
 # PROJECT ECHO — PHASE 3: FINAL REPORT
 ## Untouched 2025 Alpha Validation
 
-```
-╔══════════════════════════════════════════════════════════════════════════╗
-║        PROJECT ECHO — PHASE 3: 2025 HOLDOUT VALIDATION RESULTS          ║
-║                                                                          ║
-║  GATE A — FUNDAMENTAL TRANSMISSION:    REPLICATED (Phases 1-1.2)        ║
-║  GATE B — MARKET UNDER-INCORPORATION:  CONFIRMED  (Phase 2, 2020-2024)  ║
-║  GATE C — 2025 PORTFOLIO ECONOMICS:    CONDITIONAL                        ║
-║  GATE D — PERMUTATION CONTROL:         CONDITIONAL                        ║
-║                                                                          ║
-║  Mean +5D SAR: +0.477%  Median: +0.373%  Win: 54.3%         ║
-║  t=1.829  p=6.93e-02  95%CI=[-0.03%,0.98%]            ║
-║  Net 25bps: +0.227%  Cal Return: +7.85%                   ║
-║  Sharpe: 1.355  Sortino: 1.414  MaxDD: -9.39%               ║
-╚══════════════════════════════════════════════════════════════════════════╝
-```
+---
+
+## FINAL GATE VERDICT
+
+**GATE B — WEAK / INCONCLUSIVE ALPHA EVIDENCE**
+
+The frozen five-day market-underincorporation strategy failed its preregistered alpha-validation criteria on the untouched 2025 holdout.
 
 ---
 
-## 47-ITEM REPORTING SCHEMA
+## Primary Results (Frozen — Unmodified)
 
-### Part A — Sample Composition
-1. **Total 2025 Source Events**: 39
-2. **Source Tickers** (11): AMAT, AMD, AMZN, ASML, AVGO, GOOGL, META, MSFT, MU, NVDA, TSM
-3. **Raw Transmission Observations**: 173
-4. **Unique Target-Entry Obs (Primary N)**: 151
-5. **Unique Target Tickers**: 13 (AMAT, AMD, ANET, ASML, AVGO, DELL, KLAC, LRCX, MRVL, NVDA, SMCI, TSM, VRT)
-6. **Relationship Edges**: 48 (frozen from Phase 2)
-7. **Date Range**: 2025-01-16 → 2025-12 (entry window)
-8. **Timestamp Verification**: 100% (all events have documented public release times)
-9. **Median Info-to-Entry Delay**: 17.91 h (AMC) / 3.50 h (BMO)
-10. **Long / Short Split**: 94 Long / 57 Short
-
-### Part B — Primary +5D SAR
-11. **Mean Gross SAR**: +0.4774%
-12. **Median Gross SAR**: +0.3732%
-13. **Win Rate**: 54.30% (82/151)
-14. **Std Error**: 0.2610%
-15. **t-Statistic**: 1.8294
-16. **p-Value**: 6.9329e-02
-17. **95% Bootstrap CI**: [-0.031%, +0.979%]
-
-### Part C — Friction-Adjusted Returns
-18. **0 bps (Gross)**: +0.4774%
-19. **10 bps**: +0.3774%
-20. **25 bps (PRIMARY)**: +0.2274%
-21. **50 bps**: -0.0226%
-
-### Part D — Incorporation Curve
-22. **Pre-Entry**: -0.006%
-23. **Day 0 Close**: +0.000%
-24. **+1D Close**: +0.006%
-25. **+2D Close**: +0.038%
-26. **+5D Close (Primary)**: +0.477%
-27. **+10D Close**: +0.302%
-28. **+20D Close**: +0.919%
-
-### Part E — Signal Strength
-29. **EchoImpact Spearman r_s**: +0.1221 (p=1.3519e-01)
-30. **Low Tier Mean SAR**: +0.558%
-31. **Mid Tier Mean SAR**: +1.019%
-32. **High Tier Mean SAR**: -0.155%
-
-### Part F — Long vs Short
-33. **LONG Mean SAR**: +0.796% (N=94, WR=59.6%)
-34. **SHORT Mean SAR**: -0.048% (N=57, WR=45.6%)
-
-### Part G — Multi-Source
-35. **Single-Source**: +0.526% (N=129)
-36. **Multi-Source**: +0.190% (N=22)
-
-### Part H — Robustness
-37. **Leave-One-Target-Out**: [+0.295%, +0.597%]
-38. **Leave-One-Source-Out**: [+0.109%, +0.603%]
-
-### Part I — Quarterly Stability
-- **2025Q1**: N=32 Mean=+0.061% WR=46.9% t=0.116 p=0.9086
-- **2025Q2**: N=42 Mean=+1.049% WR=61.9% t=2.611 p=0.0126
-- **2025Q3**: N=42 Mean=+1.143% WR=64.3% t=2.3 p=0.0266
-- **2025Q4**: N=35 Mean=-0.626% WR=40.0% t=-0.986 p=0.3311
-39. **All quarters positive**: NO (see quarterly file)
-
-### Part J — Permutation Negative Control
-40. **Perm Median SAR**: +0.689%
-41. **Perm P95**: +0.954%
-42. **Perm P99**: +1.049%
-43. **Empirical p-Value**: 0.9040 (95/1000 permutations beaten)
-
-### Part K — Portfolio Simulation (25 bps, 2025 Calendar)
-44. **Total Calendar Return**: +7.85%
-45. **Sharpe Ratio**: 1.3548
-46. **Sortino Ratio**: 1.4144
-47. **Max Drawdown**: -9.39%
-    - Avg Concurrency: 3.5 | Max Concurrency: 16 | Total Trades: 151
+| Metric | Value |
+|:---|:---|
+| N (Unique Target-Entry Observations) | 151 |
+| Mean Gross SAR +5D | +0.477% |
+| Median SAR +5D | +0.373% |
+| Win Rate | 54.30% (82/151) |
+| Standard Error | 0.261% |
+| t-Statistic | 1.829 |
+| p-Value (two-sided) | 0.0693 |
+| 95% Bootstrap CI | [−0.031%, +0.979%] |
+| Net after 10 bps | +0.377% |
+| Net after 25 bps (PRIMARY) | +0.227% |
+| Net after 50 bps | −0.023% |
+| EchoImpact Spearman r_s | +0.122 (p = 0.135) |
+| Permutation Median SAR | +0.689% |
+| Permutation Empirical p | 0.904 (904/1000 permutations exceeded true result) |
+| Portfolio Calendar Return (25 bps) | +7.85% |
+| Portfolio Sharpe | 1.355 |
+| Portfolio Sortino | 1.414 |
+| Portfolio Max Drawdown | −9.39% |
 
 ---
 
-## GATE VERDICTS
+## Phase 2 Discovery vs. Phase 3 Holdout
 
-```
-╔═══════════════════════════════════════════════════════════╗
-║  GATE A — FUNDAMENTAL TRANSMISSION:    REPLICATED  ✅     ║
-║  GATE B — MARKET UNDER-INCORPORATION:  CONFIRMED   ✅     ║
-║  GATE C — 2025 PORTFOLIO ECONOMICS:    CONDITIONAL  ⚠️     ║
-║  GATE D — PERMUTATION CONTROL:         CONDITIONAL  ⚠️     ║
-╚═══════════════════════════════════════════════════════════╝
-```
+| Metric | Phase 2 (Discovery, 2020–2024) | Phase 3 (Holdout, 2025) |
+|:---|:---:|:---:|
+| N | 188 | 151 |
+| Mean SAR +5D | +4.523% | +0.477% |
+| Win Rate | 94.7% | 54.3% |
+| t-stat | 16.874 | 1.829 |
+| p-value | 1.99 × 10⁻³⁹ | 0.0693 |
+| 95% CI excludes zero | Yes | No |
+| Permutation empirical p | 0.000 | 0.904 |
+| Replication ratio | — | ~10.5% |
 
-*Phase 3 — Untouched 2025 Holdout | Executed 2026-09-06 | Strategy frozen post-Phase 2*
+Phase 2 was the strategy-design and discovery dataset. Phase 3 was the confirmatory holdout. The replication ratio of approximately 10.5% indicates the Phase 2 signal did not replicate in Phase 3.
+
+---
+
+## Preregistered Gate Criteria — Failure Analysis
+
+The frozen strategy failed Gate B because:
+
+1. **Mean +5D SAR** (+0.477%) did not exceed the +0.50% hurdle
+2. **Win rate** (54.30%) did not exceed 55%
+3. **Two-sided p-value** (0.0693) was not < 0.05
+4. **Bootstrap 95% CI** [−0.031%, +0.979%] did not exclude zero
+5. **Permutation control** failed: 904/1000 randomly shuffled signal assignments exceeded the true Echo result
+
+The positive portfolio simulation return (+7.85%) and the positive net SAR after 25 bps (+0.227%) are recorded in the data but do **not** override the preregistered gate criteria.
+
+---
+
+## Quarterly Subperiod Results (Descriptive Only)
+
+| Quarter | N | Mean SAR | Win Rate | t-stat | p-value |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| 2025 Q1 | 32 | +0.061% | 46.9% | 0.116 | 0.909 |
+| 2025 Q2 | 42 | +1.049% | 61.9% | 2.611 | 0.013 |
+| 2025 Q3 | 42 | +1.143% | 64.3% | 2.300 | 0.027 |
+| 2025 Q4 | 35 | −0.626% | 40.0% | −0.986 | 0.331 |
+
+These subperiod results are **descriptive and hypothesis-generating only**. They are not validated findings and must not be used to construct a revised strategy.
+
+---
+
+## Additional Descriptive Statistics (Post-Hoc Only)
+
+The following are recorded as-is for archival completeness. They are not validated explanations.
+
+- Long signals: +0.796% mean, 59.6% win rate (N=94)
+- Short signals: −0.048% mean, 45.6% win rate (N=57)
+- Single-source: +0.526% mean (N=129)
+- Multi-source: +0.190% mean (N=22)
+- Leave-one-target-out range: [+0.295%, +0.597%]
+- Leave-one-source-out range: [+0.109%, +0.603%]
+- +20D horizon mean SAR: +0.919%
+
+---
+
+## Incorporation Curve (Descriptive Only)
+
+| Horizon | Mean SAR | Win Rate |
+|:---|:---:|:---:|
+| Pre-Entry | −0.006% | 33.8% |
+| Day 0 Close | 0.000% | 0.0% |
+| +1D Close | +0.006% | 45.7% |
+| +2D Close | +0.038% | 47.0% |
+| +5D Close (Primary) | +0.477% | 54.3% |
+| +10D Close | +0.302% | 47.0% |
+| +20D Close | +0.919% | 54.3% |
+
+---
+
+## Final Scientific Conclusion
+
+> Project Echo established a temporally replicated cross-company fundamental forecasting mechanism. However, the frozen five-day market-underincorporation strategy discovered on 2020–2024 failed to achieve its preregistered alpha-validation criteria on the untouched 2025 holdout. Accordingly, Project Echo has demonstrated fundamental information value but has not demonstrated robust tradeable public-equity alpha.
+
+---
+
+## Data Integrity Certificate
+
+- **SHA-256 Blind Prediction Hash**: `23b5c37f16950973900ee69306b15ced15c1470511101cfa8f34b7c37a6185d2`
+- All predictions frozen before price join: **CERTIFIED**
+- 2026 data accessed: **NONE**
+- Parameters modified after Phase 2: **NONE**
+- Raw results modified: **NONE**
+
+---
+
+*Phase 3 executed 2026-09-06 | Strategy frozen post-Phase 2 | 2025 data consumed first and only time*  
+*All raw data files preserved unchanged in `data/echo/phase3/`*
