@@ -1,0 +1,7 @@
+Statistic,Value,Empirical_p_Value
+True Echo Mean SignedNetRevision,0.0657,p = 0.1050
+Permutation Median SignedNetRevision,0.02345,
+Permutation 95th Percentile,0.07939,
+Permutation 99th Percentile,0.10209,
+True Echo Conditional Agreement (%),61.0,p = 0.1050
+Permutation Median Conditional Agreement (%),56.0,

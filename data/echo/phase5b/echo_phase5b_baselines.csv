@@ -1,0 +1,5 @@
+Model,Conditional_Agreement_Pct,Unconditional_Hit_Rate_Pct,Description
+Baseline 1: No Change,0.0,0.0,Assumes sell-side never updates estimates
+Baseline 2: Target Revision Momentum (30-Day),50.0,40.98,Continues Target 30-day pre-T0 revision trend
+Baseline 3: Target Own Prior Information,57.0,46.72,Uses Target prior growth/guidance trajectory
+Baseline 4: Project Echo (Cross-Firm Signal),61.0,50.0,Transmitted upstream/downstream operational disclosure

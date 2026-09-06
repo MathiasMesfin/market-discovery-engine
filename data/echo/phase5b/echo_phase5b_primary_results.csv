@@ -1,0 +1,2 @@
+N_Reports,Mean_SignedNetRevision,Median_SignedNetRevision,Std_Error,t_statistic,p_value_twosided,CI_95_Lo,CI_95_Hi,Fraction_Positive_Pct,Fraction_Zero_Pct,Fraction_Negative_Pct,Spearman_AbsEcho_vs_SignedRev,Spearman_Echo_vs_RawRev
+122,0.0657,0.0,0.03727,1.7626,0.08048696371719732,-0.00631,0.13858,48.36,21.31,30.33,0.2395,0.2657

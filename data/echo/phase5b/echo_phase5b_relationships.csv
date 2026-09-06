@@ -1,0 +1,49 @@
+Source_Ticker,Target_Ticker,W_AB,Sign_AB,Mechanism,Target_Metric,Target_Hierarchy
+MSFT,ANET,0.85,1,Hyperscale cloud networking capex,Cloud Titan Revenue YoY Growth,Segment_KPI
+MSFT,NVDA,0.9,1,AI/GPU cloud procurement,Data Center Revenue YoY Growth,Segment_KPI
+MSFT,AMD,0.75,1,CPU+GPU server procurement,Data Center Segment Revenue YoY Growth,Segment_KPI
+MSFT,DELL,0.7,1,Enterprise server demand,ISG (Servers & Networking) Revenue YoY Growth,Segment_KPI
+MSFT,VRT,0.65,1,Datacenter power/cooling,Americas Data Center Revenue YoY Growth,Segment_KPI
+GOOGL,ANET,0.85,1,Hyperscale cloud networking capex,Cloud Titan Revenue YoY Growth,Segment_KPI
+GOOGL,NVDA,0.92,1,AI/GPU cloud procurement,Data Center Revenue YoY Growth,Segment_KPI
+GOOGL,AMD,0.72,1,CPU+GPU server procurement,Data Center Segment Revenue YoY Growth,Segment_KPI
+GOOGL,ASML,0.6,1,Advanced node wafer demand signal,Lithography Systems Revenue YoY Growth,Segment_KPI
+GOOGL,TSM,0.7,1,Advanced node wafer demand,HPC Segment Revenue QoQ Growth,Segment_KPI
+META,NVDA,0.88,1,AI training GPU procurement,Data Center Revenue YoY Growth,Segment_KPI
+META,AMD,0.68,1,CPU server procurement,Data Center Segment Revenue YoY Growth,Segment_KPI
+META,ANET,0.75,1,Datacenter networking capex,Cloud Titan Revenue YoY Growth,Segment_KPI
+META,VRT,0.6,1,Datacenter power/cooling,Americas Data Center Revenue YoY Growth,Segment_KPI
+AMZN,ANET,0.8,1,AWS networking infrastructure,Cloud Titan Revenue YoY Growth,Segment_KPI
+AMZN,NVDA,0.85,1,AWS GPU instances procurement,Data Center Revenue YoY Growth,Segment_KPI
+AMZN,MRVL,0.65,1,Custom silicon / networking ASICs,Data Center Electro-Optics Revenue YoY Growth,Segment_KPI
+AMZN,SMCI,0.7,1,Server platforms procurement,Server Systems Revenue YoY Growth,Segment_KPI
+AMZN,VRT,0.62,1,Datacenter power/cooling,Americas Data Center Revenue YoY Growth,Segment_KPI
+TSM,ASML,0.95,1,EUV lithography equipment orders,Lithography Systems Revenue YoY Growth,Segment_KPI
+TSM,AMAT,0.9,1,Deposition/etch equipment orders,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+TSM,LRCX,0.88,1,Etch equipment orders,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+TSM,KLAC,0.85,1,Process control equipment orders,Process Control Systems Revenue YoY Growth,Segment_KPI
+TSM,NVDA,0.78,1,Advanced node capacity: NVDA chips,Data Center Revenue YoY Growth,Segment_KPI
+TSM,AMD,0.75,1,Advanced node capacity: AMD chips,Data Center Segment Revenue YoY Growth,Segment_KPI
+TSM,AVGO,0.72,1,Custom ASIC advanced node capacity,Networking Semiconductor Revenue YoY Growth,Segment_KPI
+ASML,TSM,0.85,1,EUV backlog = foundry capacity signal,HPC Segment Revenue QoQ Growth,Segment_KPI
+ASML,AMAT,0.7,1,Co-sell semiconductor tools,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+ASML,LRCX,0.68,1,Co-sell semiconductor tools,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+NVDA,TSM,0.9,1,Leading-edge wafer volume,HPC Segment Revenue QoQ Growth,Segment_KPI
+NVDA,ASML,0.75,1,EUV demand via TSM,Lithography Systems Revenue YoY Growth,Segment_KPI
+NVDA,AMAT,0.72,1,Process equipment via TSM,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+NVDA,SMCI,0.8,1,GPU server system integrator,Server Systems Revenue YoY Growth,Segment_KPI
+NVDA,VRT,0.7,1,Datacenter power for GPU clusters,Americas Data Center Revenue YoY Growth,Segment_KPI
+NVDA,MRVL,0.65,1,Networking silicon for DGX clusters,Data Center Electro-Optics Revenue YoY Growth,Segment_KPI
+NVDA,ANET,0.72,1,InfiniBand / Ethernet for GPU networks,Cloud Titan Revenue YoY Growth,Segment_KPI
+MU,AMAT,0.8,1,Memory fab equipment orders,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+MU,LRCX,0.82,1,Memory etch equipment orders,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+MU,KLAC,0.78,1,Memory process control equipment,Process Control Systems Revenue YoY Growth,Segment_KPI
+MU,ASML,0.65,1,EUV for DRAM advanced nodes,Lithography Systems Revenue YoY Growth,Segment_KPI
+MU,NVDA,0.7,1,HBM memory for AI GPUs,Data Center Revenue YoY Growth,Segment_KPI
+AMAT,LRCX,0.75,1,Peer semiconductor tool demand,Semiconductor Systems Revenue YoY Growth,Segment_KPI
+AMAT,KLAC,0.8,1,Co-process tool peer demand,Process Control Systems Revenue YoY Growth,Segment_KPI
+AMD,TSM,0.82,1,Leading-edge wafer volume,HPC Segment Revenue QoQ Growth,Segment_KPI
+AMD,ASML,0.65,1,EUV demand via TSM,Lithography Systems Revenue YoY Growth,Segment_KPI
+AMD,DELL,0.62,1,CPU server platform volumes,ISG (Servers & Networking) Revenue YoY Growth,Segment_KPI
+AVGO,TSM,0.78,1,Custom ASIC wafer volume,HPC Segment Revenue QoQ Growth,Segment_KPI
+AVGO,ANET,0.55,1,Networking silicon co-demand,Cloud Titan Revenue YoY Growth,Segment_KPI
