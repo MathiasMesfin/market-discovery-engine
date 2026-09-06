@@ -1,0 +1,7 @@
+Hierarchy_Tier,Description,Count,Pct
+TIER_1_EXACT_KPI,Verified PIT Street consensus for exact target KPI,150,86.71
+TIER_2_SEGMENT_REVENUE,Verified PIT Street consensus for reporting segment,23,13.29
+TIER_1_AND_2_PRIMARY,Exact KPI + Segment Consensus (Primary Analysis Sample),173,100.0
+TIER_3_REVENUE_FALLBACK,Verified PIT total company revenue consensus,173,100.0
+TIER_3_EPS_FALLBACK,Verified PIT company EPS consensus,173,100.0
+NO_VERIFIED_KPI_CONSENSUS,No genuine pre-T0 consensus compiled,0,0.0

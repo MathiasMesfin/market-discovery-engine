@@ -1,0 +1,5 @@
+Experiment,MAE_pp,MAE_Improvement_Pct,Empirical_p_Value
+True Echo Signal (Model 3 vs Model 2),6.0647,-14.49,p = 0.1760
+Permutation Negative Control (Median),6.2713,-18.39,
+Permutation Negative Control (95th Pct),5.8852,-11.1,
+Permutation Negative Control (99th Pct),5.7578,-8.7,
