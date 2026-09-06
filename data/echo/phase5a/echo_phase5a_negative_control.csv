@@ -1,0 +1,5 @@
+Experiment,Agreement_Pct,Empirical_p_Value
+True Echo Revision Agreement (Conditional),68.28,p < 0.001
+Wrong-Target Permutation Median,54.1,
+Wrong-Target Permutation 95th Percentile,58.58,
+Wrong-Target Permutation 99th Percentile,60.07,

@@ -1,0 +1,6 @@
+Model,Directional_Agreement_Pct,Description
+Baseline 1: No-Change Prediction,0.0,Assumes analysts never revise estimates pre-earnings
+Baseline 2: Target 30-Day Revision Momentum,51.85,Continues Target B prior revision trajectory
+Baseline 3: Target Most Recent Earnings Surprise,53.12,Extrapolates Target B prior quarter beat/miss sign
+Baseline 4: Source A Stock Reaction Direction,54.2,Uses Source A immediate post-earnings stock move sign
+Project Echo: Independent Cross-Firm Signal,68.28,Echo transmitted operational shock direction

@@ -1,0 +1,11 @@
+Analysis_Metric,Value
+Eligible Unique Target Reports (N),348
+Reports with Genuine Revision (N),268
+No-Revision Reports (N),80
+Revision Coverage (%),77.01%
+2020-2024 Conditional Agreement (%),77.27%
+2025 Conditional Agreement (%),59.56%
+Combined Conditional Directional Agreement (%),68.28%
+Combined Unconditional Hit Rate (%),52.59%
+Net Pre-Report Revision Agreement (%),68.28%
+EchoImpact vs Revision Magnitude Spearman (r_s),0.5747 (p=5.8935e-25)

@@ -1,0 +1,4 @@
+Metric_Alignment,Total_Reports,Revision_Cases,Revision_Coverage_Pct,Conditional_Agreement_Pct,Unconditional_Hit_Rate_Pct
+EXACT_KPI,165,117,70.91,64.1,45.45
+SEGMENT_REVENUE,119,94,78.99,69.15,54.62
+TOTAL_REVENUE,64,57,89.06,75.44,67.19
