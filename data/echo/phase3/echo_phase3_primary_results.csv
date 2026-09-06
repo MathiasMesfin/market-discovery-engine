@@ -1,0 +1,2 @@
+N_Obs,Mean_SAR_5D_pct,Median_SAR_5D_pct,Win_Rate_pct,Std_Dev_pct,Std_Error_pct,t_stat,p_value,CI_95_Lo_pct,CI_95_Hi_pct,Gross_pct,Net_10bps_pct,Net_25bps_pct,Net_50bps_pct
+151,0.4774,0.3732,54.3046,3.2069,0.261,1.8294,0.06932919110625019,-0.031,0.9793,0.4774,0.3774,0.2274,-0.0226

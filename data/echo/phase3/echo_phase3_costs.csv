@@ -1,0 +1,5 @@
+Scenario,Friction_bps,Net_SAR_pct,Win_Rate_pct
+Gross (0 bps),0,0.4774,54.3
+Low (10 bps),10,0.3774,52.32
+Standard (25 bps),25,0.2274,51.66
+High (50 bps),50,-0.0226,47.68

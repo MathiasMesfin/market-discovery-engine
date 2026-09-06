@@ -1,0 +1,49 @@
+Source,Target,W_AB,Sign_AB,Mechanism
+MSFT,ANET,0.85,1,Hyperscale cloud networking capex
+MSFT,NVDA,0.9,1,AI/GPU cloud procurement
+MSFT,AMD,0.75,1,CPU+GPU server procurement
+MSFT,DELL,0.7,1,Enterprise server demand
+MSFT,VRT,0.65,1,Datacenter power/cooling
+GOOGL,ANET,0.85,1,Hyperscale cloud networking capex
+GOOGL,NVDA,0.92,1,AI/GPU cloud procurement
+GOOGL,AMD,0.72,1,CPU+GPU server procurement
+GOOGL,ASML,0.6,1,Advanced node wafer demand signal
+GOOGL,TSM,0.7,1,Advanced node wafer demand
+META,NVDA,0.88,1,AI training GPU procurement
+META,AMD,0.68,1,CPU server procurement
+META,ANET,0.75,1,Datacenter networking capex
+META,VRT,0.6,1,Datacenter power/cooling
+AMZN,ANET,0.8,1,AWS networking infrastructure
+AMZN,NVDA,0.85,1,AWS GPU instances procurement
+AMZN,MRVL,0.65,1,Custom silicon / networking ASICs
+AMZN,SMCI,0.7,1,Server platforms procurement
+AMZN,VRT,0.62,1,Datacenter power/cooling
+TSM,ASML,0.95,1,EUV lithography equipment orders
+TSM,AMAT,0.9,1,Deposition/etch equipment orders
+TSM,LRCX,0.88,1,Etch equipment orders
+TSM,KLAC,0.85,1,Process control equipment orders
+TSM,NVDA,0.78,1,Advanced node capacity: NVDA chips
+TSM,AMD,0.75,1,Advanced node capacity: AMD chips
+TSM,AVGO,0.72,1,Custom ASIC advanced node capacity
+ASML,TSM,0.85,1,EUV backlog = foundry capacity signal
+ASML,AMAT,0.7,1,Co-sell semiconductor tools
+ASML,LRCX,0.68,1,Co-sell semiconductor tools
+NVDA,TSM,0.9,1,Leading-edge wafer volume
+NVDA,ASML,0.75,1,EUV demand via TSM
+NVDA,AMAT,0.72,1,Process equipment via TSM
+NVDA,SMCI,0.8,1,GPU server system integrator
+NVDA,VRT,0.7,1,Datacenter power for GPU clusters
+NVDA,MRVL,0.65,1,Networking silicon for DGX clusters
+NVDA,ANET,0.72,1,InfiniBand/Ethernet for GPU networks
+MU,AMAT,0.8,1,Memory fab equipment orders
+MU,LRCX,0.82,1,Memory etch equipment orders
+MU,KLAC,0.78,1,Memory process control equipment
+MU,ASML,0.65,1,EUV for DRAM advanced nodes
+MU,NVDA,0.7,1,HBM memory for AI GPUs
+AMAT,LRCX,0.75,1,Peer semiconductor tool demand
+AMAT,KLAC,0.8,1,Co-process tool peer demand
+AMD,TSM,0.82,1,Leading-edge wafer volume
+AMD,ASML,0.65,1,EUV demand via TSM
+AMD,DELL,0.62,1,CPU server platform volumes
+AVGO,TSM,0.78,1,Custom ASIC wafer volume
+AVGO,ANET,0.55,1,Networking silicon co-demand
