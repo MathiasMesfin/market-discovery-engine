@@ -1,0 +1,2 @@
+spearman_rho,spearman_p,low_flow_mean_pct,medium_flow_mean_pct,high_flow_mean_pct,monotonicity_pass
+-0.0244,0.4153,0.05,0.32,-2.195,False
