@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       universe:
-        description: 'Scan universe (discovery, test, full)'
+        description: 'Scan universe (discovery, sample, test, full, all)'
         required: true
         default: 'discovery'
 
@@ -32,21 +32,31 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute Pre-Market Discovery Scan
+      - name: Execute Pre-Market Discovery Scans
         env:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: |
-          UNIVERSE="${{ github.event.inputs.universe || 'discovery' }}"
-          python scripts/morning_scan.py --universe "$UNIVERSE"
+          UNIVERSE="${{ github.event.inputs.universe || 'all' }}"
+          if [ "$UNIVERSE" = "all" ]; then
+            # Scheduled run: scan all universes in sequence
+            echo "=== Running Discovery Universe ==="
+            python scripts/morning_scan.py --universe discovery --finnhub-key "$FINNHUB_API_KEY" || true
+            echo "=== Running Sample Universe (50) ==="
+            python scripts/morning_scan.py --universe sample --finnhub-key "$FINNHUB_API_KEY" || true
+            echo "=== Running Test Universe (20) ==="
+            python scripts/morning_scan.py --universe test --finnhub-key "$FINNHUB_API_KEY" || true
+          else
+            python scripts/morning_scan.py --universe "$UNIVERSE" --finnhub-key "$FINNHUB_API_KEY"
+          fi
 
       - name: Commit and Push Updated Pre-Scan Data
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Market Discovery Bot"
-          git add data/history/daily_discovery_latest.csv data/history/daily_discovery_latest.parquet data/history/screener_results_*.csv
+          git add data/history/daily_discovery_latest*.csv data/history/daily_discovery_latest*.parquet data/history/screener_results_*.csv
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Update daily pre-market discovery dataset [skip ci]"
+            git commit -m "Update daily pre-market discovery datasets [skip ci]"
             git push origin main
           fi

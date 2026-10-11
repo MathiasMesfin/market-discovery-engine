@@ -1173,24 +1173,6 @@ def render_overview_tab():
 </div>
 """, unsafe_allow_html=True)
 
-    with st.expander("Upload / Replace Walkthrough Demo Video", expanded=False):
-        st.markdown("""
-Upload a screen recording of your engine walkthrough (MP4, WEBM, or MOV up to 200MB).  
-Recommended recording flow: Universe selection &rarr; Stage 1 Scan execution &rarr; Batch Deep Scan queue &rarr; Candidate Dossier inspection.
-""")
-        uploaded_vid = st.file_uploader("Upload video file", type=["mp4", "webm", "mov"], key="demo_video_uploader")
-        if uploaded_vid is not None and hasattr(uploaded_vid, "read"):
-            try:
-                raw_bytes = uploaded_vid.read()
-                if isinstance(raw_bytes, (bytes, bytearray)) and len(raw_bytes) > 0:
-                    os.makedirs("assets", exist_ok=True)
-                    save_path = "assets/demo.mp4"
-                    with open(save_path, "wb") as f:
-                        f.write(raw_bytes)
-                    st.success(f"Video saved successfully to {save_path}.")
-                    safe_rerun()
-            except Exception:
-                pass
 
     # Quantitative Edge Metrics Reference
     st.markdown('<div class="overview-section-header">Quantitative Methodology & Edge Metrics</div>', unsafe_allow_html=True)
@@ -1249,31 +1231,45 @@ with tab_home:
     render_overview_tab()
 
 
-def load_latest_precomputed_discovery():
-    """Loads precomputed morning scan from parquet or csv."""
-    parquet_path = os.path.join(repo_root, "data", "history", "daily_discovery_latest.parquet")
-    csv_path = os.path.join(repo_root, "data", "history", "daily_discovery_latest.csv")
-    if os.path.exists(parquet_path):
+def load_latest_precomputed_discovery(universe_name=None):
+    """Loads precomputed morning scan from parquet or csv.
+    Tries universe-specific file first (e.g. daily_discovery_latest_full.parquet),
+    then falls back to the generic daily_discovery_latest.parquet/csv."""
+    history_dir = os.path.join(repo_root, "data", "history")
+
+    # Build ordered list of candidate files to try
+    candidates = []
+    if universe_name and universe_name != "discovery":
+        candidates += [
+            os.path.join(history_dir, f"daily_discovery_latest_{universe_name}.parquet"),
+            os.path.join(history_dir, f"daily_discovery_latest_{universe_name}.csv"),
+        ]
+    candidates += [
+        os.path.join(history_dir, "daily_discovery_latest.parquet"),
+        os.path.join(history_dir, "daily_discovery_latest.csv"),
+    ]
+
+    for path in candidates:
+        if not os.path.exists(path):
+            continue
         try:
-            df = pd.read_parquet(parquet_path)
-            mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(parquet_path))
-            return df, "parquet", mod_time
+            if path.endswith(".parquet"):
+                df = pd.read_parquet(path)
+            else:
+                df = pd.read_csv(path)
+            mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(path))
+            return df, os.path.basename(path), mod_time
         except Exception:
-            pass
-    if os.path.exists(csv_path):
-        try:
-            df = pd.read_csv(csv_path)
-            mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(csv_path))
-            return df, "csv", mod_time
-        except Exception:
-            pass
+            continue
+
+    # Last resort: newest historical screener CSV
     hist_files = get_historical_files()
     if hist_files:
         try:
             newest = os.path.join(repo_root, "data", "history", hist_files[0])
             df = pd.read_csv(newest)
             mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(newest))
-            return df, "archive_csv", mod_time
+            return df, hist_files[0], mod_time
         except Exception:
             pass
     return None, None, None
@@ -1340,15 +1336,25 @@ with tab_screener:
     is_morning_mode = (str(data_source_mode) == "Pre-Market Morning Scan (Instant)")
 
     if is_morning_mode:
-        if st.session_state.get('active_data_source') != 'morning' or st.session_state.get('screener_results') is None:
-            pre_df, pre_fmt, mod_time = load_latest_precomputed_discovery()
-            if pre_df is not None and not pre_df.empty:
-                st.session_state.screener_results = pre_df
-                st.session_state.active_data_source = 'morning'
-                st.session_state.morning_scan_mod_time = mod_time
-
         with st.sidebar:
             st.markdown("### Pre-Market Filters")
+
+            # Universe selector — mirrors live mode options
+            pre_universe_choice = st.selectbox(
+                "Scan Universe:",
+                options=["Discovery Pool", "Full Market", "Sample (50)", "Test (20)"],
+                index=0,
+                help="Select which pre-computed scan universe to load. Run scripts/morning_scan.py with the matching --universe flag to generate data for each.",
+                key="pre_market_universe_choice"
+            )
+            pre_universe_map = {
+                "Discovery Pool": "discovery",
+                "Full Market": "full",
+                "Sample (50)": "sample",
+                "Test (20)": "test",
+            }
+            pre_universe_name = pre_universe_map[pre_universe_choice]
+
             if st.session_state.get('morning_scan_mod_time'):
                 st.caption(f"Updated: {st.session_state.morning_scan_mod_time.strftime('%b %d, %Y at %I:%M %p')}")
 
@@ -1403,7 +1409,23 @@ with tab_screener:
             if st.button("Reload Morning Scan", width='stretch'):
                 st.session_state.screener_results = None
                 st.session_state.active_data_source = None
+                st.session_state.pre_market_loaded_universe = None
                 safe_rerun()
+
+        # Load universe — reload if universe selection changed
+        loaded_universe = st.session_state.get('pre_market_loaded_universe')
+        needs_load = (
+            st.session_state.get('active_data_source') != 'morning'
+            or st.session_state.get('screener_results') is None
+            or loaded_universe != pre_universe_name
+        )
+        if needs_load:
+            pre_df, pre_fmt, mod_time = load_latest_precomputed_discovery(pre_universe_name)
+            if pre_df is not None and not pre_df.empty:
+                st.session_state.screener_results = pre_df
+                st.session_state.active_data_source = 'morning'
+                st.session_state.morning_scan_mod_time = mod_time
+                st.session_state.pre_market_loaded_universe = pre_universe_name
 
         tickers_list = []
         run_fast_scan = False
@@ -2468,16 +2490,18 @@ with tab_screener:
                     col_inc, col_pen = st.columns(2)
                     with col_inc:
                         st.markdown("##### Positive Drivers")
-                        if breakdown.get('increases'):
-                            for item in breakdown['increases']:
+                        inc_items = breakdown.get('increases')
+                        if isinstance(inc_items, list) and inc_items:
+                            for item in inc_items:
                                 st.markdown(f"- {item}")
                         else:
                             st.caption("No scoring increases detected.")
 
                     with col_pen:
                         st.markdown("##### Risk Penalties & Flags")
-                        if breakdown.get('penalties'):
-                            for item in breakdown['penalties']:
+                        pen_items = breakdown.get('penalties')
+                        if isinstance(pen_items, list) and pen_items:
+                            for item in pen_items:
                                 st.markdown(f"- {item}")
                         else:
                             st.caption("No scoring penalties detected.")
@@ -2485,19 +2509,22 @@ with tab_screener:
                     col_warn, col_missing = st.columns(2)
                     with col_warn:
                         st.markdown("##### Special Situations")
-                        if breakdown.get('warnings'):
-                            for item in breakdown['warnings']:
+                        warn_items = breakdown.get('warnings')
+                        if isinstance(warn_items, list) and warn_items:
+                            for item in warn_items:
                                 st.caption(f"Flag: {item}")
                         else:
                             st.caption("No special situation flags.")
 
                     with col_missing:
                         st.markdown("##### Data Coverage")
-                        if breakdown.get('missing_inputs'):
-                            for item in breakdown['missing_inputs']:
+                        missing_items = breakdown.get('missing_inputs')
+                        if isinstance(missing_items, list) and missing_items:
+                            for item in missing_items:
                                 st.caption(f"Fallback used for: {item}")
                         else:
                             st.caption("All input parameters loaded.")
+
 
             tab_res_profile, tab_res_scoring, tab_res_filings, tab_res_reactions = st.tabs([
                 "Company Profile",

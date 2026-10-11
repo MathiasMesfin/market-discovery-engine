@@ -56,6 +56,21 @@ def run_morning_scan(universe_name="discovery", max_workers=8, finnhub_key=None,
     # 1. Load universe
     if universe_name == "test":
         items = get_dev_test_scan_items()
+    elif universe_name == "sample":
+        # ~50 liquid mid/large cap names — a good daily sanity check
+        universe_path = os.path.join(repo_root, "data", "us_stock_universe.csv")
+        if os.path.exists(universe_path):
+            df_u = pd.read_csv(universe_path)
+            df_sample = df_u.head(50)
+            items = [
+                {
+                    'ticker': str(row['Symbol']).upper(),
+                    'cik': str(row['CIK']).zfill(10) if pd.notnull(row.get('CIK')) else None
+                }
+                for _, row in df_sample.iterrows()
+            ]
+        else:
+            items = get_dev_test_scan_items()
     elif universe_name == "discovery":
         universe_path = os.path.join(repo_root, "data", "us_stock_universe.csv")
         items = get_discovery_universe_items(universe_path)
@@ -177,6 +192,9 @@ def run_morning_scan(universe_name="discovery", max_workers=8, finnhub_key=None,
     archive_path = os.path.join(output_dir, f"screener_results_{timestamp}.csv")
     latest_csv_path = os.path.join(output_dir, "daily_discovery_latest.csv")
     latest_parquet_path = os.path.join(output_dir, "daily_discovery_latest.parquet")
+    # Universe-specific files for multi-universe pre-market selector in app
+    universe_csv_path = os.path.join(output_dir, f"daily_discovery_latest_{universe_name}.csv")
+    universe_parquet_path = os.path.join(output_dir, f"daily_discovery_latest_{universe_name}.parquet")
 
     # Serialize date fields for clean CSV export
     save_df = df_results.copy()
@@ -192,9 +210,11 @@ def run_morning_scan(universe_name="discovery", max_workers=8, finnhub_key=None,
 
     save_df.to_csv(archive_path, index=False)
     save_df.to_csv(latest_csv_path, index=False)
+    save_df.to_csv(universe_csv_path, index=False)
     try:
         # Parquet export for sub-5ms ultra fast loads
         save_df.to_parquet(latest_parquet_path, index=False)
+        save_df.to_parquet(universe_parquet_path, index=False)
     except Exception as e:
         print(f"Note: Parquet export skipped ({e}); CSV is available.")
 
@@ -211,7 +231,7 @@ def run_morning_scan(universe_name="discovery", max_workers=8, finnhub_key=None,
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Market Discovery Engine Morning Batch Scan")
-    parser.add_argument("--universe", choices=["discovery", "test", "full"], default="discovery", help="Scan universe")
+    parser.add_argument("--universe", choices=["discovery", "test", "sample", "full"], default="discovery", help="Scan universe")
     parser.add_argument("--max-workers", type=int, default=8, help="Thread pool concurrency")
     parser.add_argument("--finnhub-key", type=str, default="", help="Finnhub API Key")
     parser.add_argument("--output-dir", type=str, default=None, help="Output directory")
