@@ -1,0 +1,52 @@
+name: Pre-Market Discovery Batch Scan
+
+on:
+  schedule:
+    # Runs at 10:30 UTC (06:30 AM EDT / 05:30 AM EST) Monday through Friday
+    - cron: '30 10 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      universe:
+        description: 'Scan universe (discovery, test, full)'
+        required: true
+        default: 'discovery'
+
+jobs:
+  run-batch-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Pre-Market Discovery Scan
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: |
+          UNIVERSE="${{ github.event.inputs.universe || 'discovery' }}"
+          python scripts/morning_scan.py --universe "$UNIVERSE"
+
+      - name: Commit and Push Updated Pre-Scan Data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Market Discovery Bot"
+          git add data/history/daily_discovery_latest.csv data/history/daily_discovery_latest.parquet data/history/screener_results_*.csv
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update daily pre-market discovery dataset [skip ci]"
+            git push origin main
+          fi

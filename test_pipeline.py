@@ -3,7 +3,7 @@ import screener
 import pprint
 
 print("Stage 0: Refresh Market Universe")
-universe, msg = screener.refresh_market_universe("test_universe.csv")
+universe, msg, _stats = screener.refresh_market_universe("test_universe.csv")
 print(msg)
 if not universe:
     sys.exit(1)

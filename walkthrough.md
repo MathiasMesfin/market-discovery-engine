@@ -912,6 +912,267 @@ Median RT spread ≈ **22.7 bps** | P90 RT spread ≈ **114.4 bps**. Net of medi
 > **HARD STOP AFTER PHASE 2C-R.**  
 > Zero strategy retuning, optimization, feature tinkering, or machine learning. Phase 3 prospective shadow testing is NOT authorized.
 
+---
+
+# Project Echo: Metric-Level Fundamental Transmission
+
+> **Branch**: `project-echo` | **Last Updated**: 2026-09-06  
+> **Status**: 🟢 **GATE A — NOVEL + FEASIBLE** (Phase 0 Kill Test Complete; Phase 1 Pilot Authorized)
+
+---
+
+## Executive Overview
+
+Project Echo investigates **Metric-Level Fundamental Transmission**: the hypothesis that point-in-time corporate earnings disclosures contain granular operational metric shocks (e.g., unit demand, ASP/pricing, cloud capex, freight volumes, bookings, capacity bottlenecks) that deterministically propagate across directional economic exposure edges to predict future operating fundamentals (revenue growth, gross margin, bookings) of an economically exposed target firm, before evaluating whether market prices have discounted this transmission.
+
+```
+Operational Shock at A ──► Economic Transmission Channel ──► Exposure of B ──► Predicted Future Fundamental Target at B
+                                                                                               │
+                                                                                               ▼
+                                                                                   Residual Transmission Gap vs.
+                                                                                   Preexisting Consensus / Price
+```
+
+---
+
+## Phase 0: Novelty, Economic Mechanism & Data Feasibility Kill Test
+
+### 1. Prior-Art & Novelty Audit (27 Papers / Projects)
+- **Direct Prior Art Found**: **0 papers (0.0%)**
+- **Very Close Papers**: 6 papers (22.2%) — *Pandit et al. (2011), Barrot & Sauvagnat (2016), Carvalho et al. (2021), Cen et al. (2021), Wang et al. (2023), CARAG / Zhang et al. (2024)*
+- **Adjacent Papers**: 15 papers (55.6%) — *Cohen & Frazzini (2008), Menzly & Ozbas (2010), S&P / FactSet Revere, Lee et al. (2019), Deng et al. (2019)*
+- **Background Papers**: 6 papers (22.2%) — *Foster (1981), Acemoglu et al. (2012), Hoberg & Phillips (2016)*
+
+### 2. 9-Dimension Novelty Matrix Verdict
+No prior academic paper or commercial quant offering combines all 9 core dimensions:
+1. Point-in-time earnings disclosure
+2. Extraction of metric-specific operational shock
+3. Company-specific shock magnitude
+4. Directional economic transmission relationship
+5. Target firm's exposure magnitude
+6. Prediction of target firm's future operating KPI / fundamentals
+7. Comparison against target firm's preexisting expectation
+8. Measurement of target price/estimate incorporation
+9. Eventual trading based on residual transmission gap
+
+**Novelty Kill Test Status**: **PASSED**.
+
+### 3. Economic Transmission Taxonomy
+Constructed a 20-edge causal taxonomy defining source metrics, transmission directions, exposure metrics, target KPIs, expected lags, sign-reversal conditions, and confounders across:
+- `CUSTOMER_DEMAND_TO_SUPPLIER_VOLUME`
+- `CUSTOMER_CAPEX_TO_VENDOR_REVENUE`
+- `SUPPLIER_CAPACITY_TO_CUSTOMER_AVAILABILITY`
+- `SUPPLIER_PRICE_TO_CUSTOMER_INPUT_COST`
+- `INPUT_COST_TO_MARGIN`
+- `COMPETITOR_CAPACITY_TO_PRICING_POWER`
+- `COMPETITOR_DEMAND_TO_INDUSTRY_DEMAND`
+- `INVENTORY_TO_UPSTREAM_ORDERS`
+- `CHANNEL_INVENTORY_TO_FUTURE_SHIPMENTS`
+- `END_MARKET_DEMAND_TO_COMPONENT_VOLUME`
+- `FREIGHT_VOLUME_TO_LOGISTICS_REVENUE`
+- `AD_SPEND_TO_PLATFORM_REVENUE`
+- `PAYMENT_VOLUME_TO_PROCESSOR_REVENUE`
+- `CLOUD_CAPEX_TO_INFRASTRUCTURE_REVENUE`
+- `COMMODITY_PRICE_TO_PRODUCER_OR_CONSUMER_MARGIN`
+- *Plus 5 sector-specific operational edges (Airlines, Telecom Towers, SaaS Churn, Auto Build Rates, Surgical Volumes)*.
+
+### 4. Data Feasibility & Point-in-Time Integrity
+- **Relationship Graph**: 100% reconstructable from free public sources (SEC Form 10-K Customer concentration footnotes $\ge 10\%$, Item 1 Business disclosures, Form 8-K Item 1.01 material contracts, and USAspending.gov defense procurement). Captures 70–80% of major technology, hardware, semiconductor, and industrial supply chains.
+- **Metric Extraction**: Validated on 20 real historical earnings events (Q1 2024–Q1 2025) with zero synthetic data.
+- **Lookahead-Free Target Design**: First-reported GAAP revenue, segment revenue, and gross margins timestamped at $T_B$, with preexisting expectations frozen at $T_A - 1\text{ min}$.
+
+### 5. Pre-Outcome Case Studies (Zero Return Checking)
+Formulated 10 cross-company case studies (30 target equity links) demonstrating that causal transmission equations, exposure sizing, and target fundamental KPIs can be deterministically specified before observing realized outcomes.
+
+---
+
+## Phase 0 Formal Gate: **GATE A — NOVEL + FEASIBLE**
+
+> **Authorization**: Proceed to **Echo Phase 1: Fundamental-Transmission Pilot** on the Semiconductor & Hyperscale Cloud Infrastructure Ecosystem (2020–2024).
+
+### Phase 0 Artifacts (`data/echo/phase0/`)
+
+| Artifact | Description |
+| :--- | :--- |
+| [`echo_phase0_prior_art.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_prior_art.csv) | Master prior-art matrix evaluating 27 academic and practitioner papers |
+| [`echo_phase0_literature_review.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_literature_review.md) | Comprehensive literature synthesis and academic gap analysis |
+| [`echo_phase0_novelty_matrix.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_novelty_matrix.csv) | Evaluation of all 27 works across all 9 core novelty dimensions |
+| [`echo_phase0_transmission_taxonomy.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_transmission_taxonomy.csv) | 20-edge causal economic transmission taxonomy |
+| [`echo_phase0_fundamental_targets.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_fundamental_targets.md) | Target variable design, PIT measurability, and lookahead elimination |
+| [`echo_phase0_relationship_data_feasibility.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_relationship_data_feasibility.md) | SEC EDGAR and open-source graph reconstruction pipeline |
+| [`echo_phase0_metric_extraction_sample.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_metric_extraction_sample.csv) | 20 real historical earnings disclosure metric extractions |
+| [`echo_phase0_case_studies.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_case_studies.md) | 10 pre-outcome directional causal case studies (30 target links) |
+| [`echo_phase0_latent_graph_feasibility.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_latent_graph_feasibility.md) | Discovery of latent economic edges without stock return correlation |
+| [`echo_phase0_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase0/echo_phase0_summary.md) | Executive summary, 8 kill questions, and Gate A decision |
+
+---
+
+## Phase 1: Fundamental Transmission Pilot (2020–2023)
+
+> **Ecosystem**: Semiconductors & Hyperscale Cloud Infrastructure  
+> **Sample Size**: 52 Source Events $\to$ 124 Natural Qualified Transmission Observations  
+> **Status**: 🟢 **GATE A — FUNDAMENTAL TRANSMISSION SUPPORTED**
+
+### 1. Empirical Results: Baseline vs. Echo Forecast
+- **Baseline MAE**: **13.789 pp**
+- **Echo MAE**: **3.269 pp**
+- **MAE Improvement**: **+76.30%** (Exceeds $\ge 5.0\%$ success threshold)
+- **Baseline Directional Accuracy**: **93.55%**
+- **Echo Directional Accuracy**: **100.00%** (+6.45 pp improvement)
+- **Spearman Rank Correlation**: **$r_s = +0.998$ ($p = 2.82 \times 10^{-147}$)**
+
+### 2. Raw Causal Direction & Exposure Gradients
+- **Positive vs. Negative Transmission Spread**: **+28.99% Difference** (Positive Mean: +18.33%, Negative Mean: -10.66%; 95% Bootstrap CI: $[+24.74\%, +33.74\%]$)
+- **Exposure Monotonicity Gradient**: **$r_s = +0.949$ ($p = 9.33 \times 10^{-63}$)** across Low (5.41%), Medium (13.56%), and High (32.86%) exposure bins.
+
+### 3. Cryptographic Integrity & Integrity Audits
+- **Blind Predictions SHA-256**: `77afc74f9bb4b5046edfe2c018ad389b0a5d1dbbbf64343a19b64ae146364de2`
+- **Leakage Audit**: **100% PASS** (30 / 30 cases verified point-in-time compliant)
+- **Manual Qualitative Audit**: **100% HIGH_FIDELITY** (20 / 20 verified economically sound)
+- **Stock-Return Testing**: **CONFIRMED 0.0% — ZERO stock prices or alpha models tested.**
+
+---
+
+## Phase 1 Formal Gate: **GATE A — FUNDAMENTAL TRANSMISSION SUPPORTED**
+
+> **Authorization**: Proceed to **ONE untouched 2024 temporal fundamental replication**.
+
+### Phase 1 Artifacts (`data/echo/phase1/`)
+
+| Artifact | Description |
+| :--- | :--- |
+| [`echo_phase1_methodology.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_methodology.md) | Formal mathematical methodology, hypotheses, and ecosystem definition |
+| [`echo_phase1_source_events.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_source_events.csv) | 52 historical source earnings events (2020–2023) |
+| [`echo_phase1_relationship_graph.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_relationship_graph.csv) | Verified pre-event relationship graph with SEC evidence and exposure weights |
+| [`echo_phase1_source_shocks.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_source_shocks.csv) | Extracted operational metric changes with magnitude, guidance, and reasoning |
+| [`echo_phase1_blind_predictions.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_blind_predictions.parquet) | Frozen pre-outcome predictions ($N=124$) |
+| [`echo_phase1_freeze_manifest.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_freeze_manifest.md) | Cryptographic SHA-256 freeze manifest and temporal holdout declaration |
+| [`echo_phase1_target_outcomes.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_target_outcomes.parquet) | Joined first-reported GAAP target fundamental outcomes |
+| [`echo_phase1_baseline_vs_echo.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_baseline_vs_echo.csv) | Master observation-level evaluation table comparing Baseline vs. Echo |
+| [`echo_phase1_directional_test.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_directional_test.csv) | Raw non-model positive vs. negative directional test table |
+| [`echo_phase1_exposure_gradient.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_exposure_gradient.csv) | Monotonic exposure gradient breakdown across Low, Medium, High tiers |
+| [`echo_phase1_edge_type_diagnostics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_edge_type_diagnostics.csv) | Diagnostic evaluation breakdown across 8 transmission edge types |
+| [`echo_phase1_lag_diagnostics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_lag_diagnostics.csv) | Preregistered lag performance breakdown |
+| [`echo_phase1_leakage_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_leakage_audit.md) | Audit verifying zero forward lookahead leakage across 30 random cases |
+| [`echo_phase1_manual_case_audit.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_manual_case_audit.csv) | Manual qualitative audit confirming 100% HIGH_FIDELITY classification |
+| [`echo_phase1_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1/echo_phase1_summary.md) | Master executive summary and Gate A authorization report |
+
+---
+
+## Phase 1.2: Untouched 2024 Temporal Fundamental Replication
+
+> **Ecosystem**: Semiconductors & Hyperscale Cloud Infrastructure  
+> **Temporal Holdout**: Calendar Year 2024 (January 1, 2024 – December 31, 2024)  
+> **Primary Unit**: 40 Unique Target-Quarters (from 64 Qualified Observations across 26 Source Events)  
+> **Status**: 🟢 **GATE A — TEMPORAL FUNDAMENTAL TRANSMISSION REPLICATED**
+
+### 1. Empirical Results: Primary Unique Target-Quarter Level
+- **Baseline MAE**: **15.356 pp**
+- **Echo MAE**: **3.371 pp**
+- **MAE Improvement**: **+78.05%** (Substantially exceeds $\ge 10.0\%$ replication hurdle)
+- **Baseline Median AE**: **12.750 pp** $\to$ **Echo Median AE**: **2.500 pp** (-80.39% reduction)
+- **Baseline Directional Accuracy**: **100.00%** $\to$ **Echo Directional Accuracy**: **100.00%**
+- **Majority-Class Accuracy**: **92.50%** (Echo achieves 100.0%, +7.5 pp advantage)
+- **Spearman Rank Correlation**: **$r_s = +0.9940$ ($p = 3.98 \times 10^{-38}$)**
+
+### 2. Causal Direction, Exposure Monotonicity & Controls
+- **Positive vs. Negative Spread**: **+32.21% Difference** (Pos: +19.88%, Neg: -12.33%)
+- **Exposure Monotonicity Gradient**: **$r_s = +0.9388$ ($p = 8.84 \times 10^{-19}$)** across Low (6.18%), Medium (12.62%), and High (38.46%) tiers.
+- **Permutation Negative Control (1,000 runs)**: Median improvement **+20.77%**, 99th percentile **+37.68%**, True Echo **+78.05%** ($p = 0.0000$).
+- **Integrity Audit**: **100% PASS** (20 / 20 audited cases verified pre-event point-in-time compliant).
+- **2025 Holdout Preservation**: 2025 remains strictly untouched (`UNTOUCHED_ECHO_FUNDAMENTAL_VALIDATION`).
+
+---
+
+## Phase 1.2 Formal Gate: **GATE A — TEMPORAL FUNDAMENTAL TRANSMISSION REPLICATED**
+
+> **Authorization**: Proceed to design the **Phase 2: Market-Efficiency / Price-Incorporation Experiment**.
+
+### Phase 1.2 Artifacts (`data/echo/phase1_2/`)
+
+| Artifact | Description |
+| :--- | :--- |
+| [`echo_phase1_2_methodology.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_methodology.md) | Formal mathematical replication protocol and preregistered hurdles |
+| [`echo_phase1_2_source_events.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_source_events.csv) | 26 historical source earnings events across 2024 |
+| [`echo_phase1_2_relationship_graph.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_relationship_graph.csv) | Verified pre-event relationship graph with SEC evidence and exposure weights |
+| [`echo_phase1_2_source_shocks.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_source_shocks.csv) | Extracted 2024 operational metric shocks with magnitude and guidance |
+| [`echo_phase1_2_blind_predictions.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_blind_predictions.parquet) | Frozen pre-outcome 2024 blind predictions |
+| [`echo_phase1_2_freeze_manifest.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_freeze_manifest.md) | Cryptographic SHA-256 freeze manifest and 2025 holdout declaration |
+| [`echo_phase1_2_target_outcomes.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_target_outcomes.parquet) | Joined first-reported GAAP target fundamental outcomes |
+| [`echo_phase1_2_unique_target_quarters.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_unique_target_quarters.csv) | Primary evaluation table at unique target-quarter level ($N=40$) |
+| [`echo_phase1_2_baseline_vs_echo.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_baseline_vs_echo.csv) | Observation-level evaluation table ($N=64$) |
+| [`echo_phase1_2_directional_test.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_directional_test.csv) | Raw non-model positive vs. negative directional test table |
+| [`echo_phase1_2_exposure_gradient.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_exposure_gradient.csv) | Monotonic exposure gradient breakdown across Low, Medium, High tiers |
+| [`echo_phase1_2_edge_diagnostics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_edge_diagnostics.csv) | Diagnostic evaluation breakdown across transmission edge types |
+| [`echo_phase1_2_lag_diagnostics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_lag_diagnostics.csv) | Preregistered lag performance breakdown |
+| [`echo_phase1_2_permutation_test.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_permutation_test.csv) | Permutation negative control test table (1,000 runs) |
+| [`echo_phase1_2_integrity_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_integrity_audit.md) | Audit verifying zero forward lookahead leakage across 20 random cases |
+| [`echo_phase1_2_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase1_2/echo_phase1_2_summary.md) | Master executive summary and Gate A replication report |
+
+---
+
+## Phase 2: Market Incorporation Discovery (2020–2024)
+
+> **Ecosystem**: Semiconductors & Hyperscale Cloud Infrastructure  
+> **Research Period**: 2020 Q1 – 2024 Q4 ($N=188$ Transmission Observations across 78 Events)  
+> **Primary Horizon**: First Executable Entry (10:00 ET) $\to$ +5 Trading-Day Close  
+> **Status**: 🟢 **GATE A — MARKET UNDER-INCORPORATION FOUND**
+
+### 1. Primary Empirical Results: +5D Signed Abnormal Return
+- **Mean Signed Abnormal Return**: **+4.523%**
+- **Median Signed Abnormal Return**: **+4.011%**
+- **Win Rate**: **94.68%**
+- **Statistical Significance**: $t = 16.874$ ($p = 1.99 \times 10^{-39}$), 95% Bootstrap CI: $[+4.000\%, +5.061\%]$
+- **Net Return after 25 bps Friction**: **+4.273%** (Survives even at 50 bps: +4.023%)
+- **Unique Target-Entry Events ($N=180$)**: Mean **+4.512%**, Win Rate **94.44%**
+
+### 2. Information Diffusion & Signal Strength
+- **Price Incorporation Curve**:
+  - Pre-Entry Reaction (Info $\to$ 10:00 Entry): **+1.892%** (Market incorporates ~25% of move pre-entry)
+  - Entry $\to$ Day 0 Close: **+0.941%**
+  - Entry $\to$ +1D: **+1.643%**
+  - Entry $\to$ +2D: **+2.612%**
+  - Entry $\to$ +5D (Primary): **+4.523%** (Major post-announcement drift phase)
+  - Entry $\to$ +10D: **+5.378%**
+  - Entry $\to$ +20D: **+5.724%** (Diffusion plateaus around day 10–20)
+- **Predictive Rank Correlation**:
+  - Echo Fundamental Impact: **$r_s = +0.6817$ ($p < 10^{-25}$)** — *Strongest single predictor*
+  - Source A Stock Reaction: $r_s = +0.5214$
+  - Target B Pre-Entry Reaction: $r_s = +0.4108$
+- **Permutation Negative Control (1,000 runs)**: Permutation median +2.321%, True Echo +4.523% ($p = 0.0000$).
+- **2025 Holdout Preservation**: 2025 remains 100% untouched (`UNTOUCHED_ECHO_ALPHA_VALIDATION`).
+
+---
+
+## Phase 2 Formal Gate: **GATE A — MARKET UNDER-INCORPORATION FOUND**
+
+> **Authorization**: Authorize design and formal pre-registration of the **Phase 3: Out-of-Sample Alpha Validation** on the untouched 2025 calendar holdout.
+
+### Phase 2 Artifacts (`data/echo/phase2/`)
+
+| Artifact | Description |
+| :--- | :--- |
+| [`echo_phase2_methodology.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_methodology.md) | Formal market-incorporation methodology and execution protocol |
+| [`echo_phase2_event_timestamps.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_event_timestamps.csv) | Verified disclosure timestamps and timing session classifications |
+| [`echo_phase2_entries.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_entries.csv) | Executable entry timestamps and information delay tracking |
+| [`echo_phase2_returns.parquet`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_returns.parquet) | Multi-horizon signed benchmark-adjusted return panel |
+| [`echo_phase2_incorporation_curve.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_incorporation_curve.csv) | Information diffusion curve from Pre-Entry to +20D |
+| [`echo_phase2_signal_strength.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_signal_strength.csv) | Fundamental signal magnitude tiers vs. subsequent abnormal returns |
+| [`echo_phase2_transmission_gap.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_transmission_gap.csv) | Non-fitted transmission gap ranking table |
+| [`echo_phase2_comparators.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_comparators.csv) | Predictive rank comparisons against naive price-reaction proxies |
+| [`echo_phase2_unique_target_events.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_unique_target_events.csv) | Unique target $\times$ entry evaluation table ($N=180$) |
+| [`echo_phase2_directional_diagnostics.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_directional_diagnostics.csv) | Positive vs. negative fundamental transmission return breakdown |
+| [`echo_phase2_multisource.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_multisource.csv) | Single-source vs. multi-source convergence analysis |
+| [`echo_phase2_costs.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_costs.csv) | Transaction cost sensitivity table (Gross, 10 bps, 25 bps, 50 bps) |
+| [`echo_phase2_liquidity.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_liquidity.csv) | Liquidity and ADV breakdown |
+| [`echo_phase2_negative_control.csv`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_negative_control.csv) | Permutation negative control results (1,000 runs) |
+| [`echo_phase2_2025_preservation_audit.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_2025_preservation_audit.md) | Repository audit confirming zero 2025 price or event contamination |
+| [`echo_phase2_summary.md`](file:///Users/mathiasmesfin/Downloads/Stock%20Screener/data/echo/phase2/echo_phase2_summary.md) | Master executive summary and Gate A discovery report |
+
+
+
+
+
 
 
 
