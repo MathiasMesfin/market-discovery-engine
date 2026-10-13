@@ -1426,6 +1426,7 @@ with tab_screener:
                 st.session_state.active_data_source = 'morning'
                 st.session_state.morning_scan_mod_time = mod_time
                 st.session_state.pre_market_loaded_universe = pre_universe_name
+                st.session_state.morning_scan_source_file = pre_fmt
 
         tickers_list = []
         run_fast_scan = False
@@ -2050,10 +2051,15 @@ with tab_screener:
 
         if is_morning_mode:
             mod_label = st.session_state.get('morning_scan_mod_time').strftime('%b %d, %Y at %I:%M %p') if st.session_state.get('morning_scan_mod_time') else "Latest"
+            selected_uni_label = pre_universe_choice if 'pre_universe_choice' in locals() else "Discovery Pool"
+            source_file = st.session_state.get('morning_scan_source_file', '')
+            is_fallback = pre_universe_name not in source_file and "latest.p" in source_file if 'pre_universe_name' in locals() and pre_universe_name != 'discovery' else False
+            status_tag = f"&middot; <span style='color: #E5A93C;'>Pending Cron Sync (Showing Discovery Snapshot)</span>" if is_fallback else ""
+
             st.markdown(f"""
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 9px 14px; background-color: #15181E; border: 1px solid #2A2F38; border-radius: 4px;">
                 <div style="font-size: 12px; color: #9CA3AF;">
-                    <strong style="color: #5B8DEF; text-transform: uppercase; letter-spacing: 0.05em;">Pre-Market Discovery Pool</strong> &middot; Snapshot: {mod_label} &middot; {len(raw_df)} Scored Candidates
+                    <strong style="color: #5B8DEF; text-transform: uppercase; letter-spacing: 0.05em;">Pre-Market &bull; {selected_uni_label}</strong> &middot; Snapshot: {mod_label} &middot; {len(raw_df)} Scored Candidates {status_tag}
                 </div>
                 <div style="font-size: 11px; color: #4FAE7B; font-weight: 600;">
                     &bull; Production Rate-Limit Protected

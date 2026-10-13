@@ -39,6 +39,8 @@ jobs:
           UNIVERSE="${{ github.event.inputs.universe || 'all' }}"
           if [ "$UNIVERSE" = "all" ]; then
             # Scheduled run: scan all universes in sequence
+            echo "=== Running Full Market Universe ==="
+            python scripts/morning_scan.py --universe full --finnhub-key "$FINNHUB_API_KEY" || true
             echo "=== Running Discovery Universe ==="
             python scripts/morning_scan.py --universe discovery --finnhub-key "$FINNHUB_API_KEY" || true
             echo "=== Running Sample Universe (50) ==="
