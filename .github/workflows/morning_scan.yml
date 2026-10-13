@@ -14,12 +14,15 @@ on:
 jobs:
   run-batch-scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -38,15 +41,15 @@ jobs:
         run: |
           UNIVERSE="${{ github.event.inputs.universe || 'all' }}"
           if [ "$UNIVERSE" = "all" ]; then
-            # Scheduled run: scan all universes in sequence
-            echo "=== Running Full Market Universe ==="
-            python scripts/morning_scan.py --universe full --finnhub-key "$FINNHUB_API_KEY" || true
+            # Scheduled run: scan fast universes first, then full market
             echo "=== Running Discovery Universe ==="
             python scripts/morning_scan.py --universe discovery --finnhub-key "$FINNHUB_API_KEY" || true
             echo "=== Running Sample Universe (50) ==="
             python scripts/morning_scan.py --universe sample --finnhub-key "$FINNHUB_API_KEY" || true
             echo "=== Running Test Universe (20) ==="
             python scripts/morning_scan.py --universe test --finnhub-key "$FINNHUB_API_KEY" || true
+            echo "=== Running Full Market Universe ==="
+            python scripts/morning_scan.py --universe full --finnhub-key "$FINNHUB_API_KEY" || true
           else
             python scripts/morning_scan.py --universe "$UNIVERSE" --finnhub-key "$FINNHUB_API_KEY"
           fi
