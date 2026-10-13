@@ -47,10 +47,6 @@ dps_calibration_audit.py
 dps_calibration_report.md
 dps_threshold_robustness.py
 historical_batch_aggregator.py
-historical_data_fetch.py
-historical_feature_engineering.py
-historical_results_store.py
-historical_scoring.py
 narrative_overlay_research.py
 pead_phase3a_engine.py
 pead_phase3b_engine.py
