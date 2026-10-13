@@ -41,7 +41,7 @@ from api_fetch import (
 )
 
 
-def run_morning_scan(universe_name="discovery", max_workers=8, finnhub_key=None, output_dir=None):
+def run_morning_scan(universe_name="discovery", max_workers=16, finnhub_key=None, output_dir=None):
     start_time = time.time()
     if output_dir is None:
         output_dir = os.path.join(repo_root, "data", "history")
@@ -129,6 +129,22 @@ def run_morning_scan(universe_name="discovery", max_workers=8, finnhub_key=None,
     if not stage1_survivors:
         print("No symbols passed Stage 1.")
         return False
+
+    # For large universes (e.g. Full Market), prioritize the top 300 most active/liquid
+    # candidates for deep fundamental and SEC enrichment to complete reliably in CI without 429 rate limits.
+    if len(stage1_survivors) > 300:
+        def _activity_score(s):
+            df = s['hist_df']
+            try:
+                v_recent = float(df['Volume'].iloc[-5:].mean())
+                v_base = float(df['Volume'].iloc[-30:].mean()) if len(df) >= 30 else v_recent
+                rvol = v_recent / v_base if v_base > 0 else 1.0
+                pct_chg = abs(float(df['Close'].iloc[-1]) / float(df['Close'].iloc[-5]) - 1.0)
+                return rvol * (1.0 + pct_chg)
+            except Exception:
+                return 1.0
+        stage1_survivors = sorted(stage1_survivors, key=_activity_score, reverse=True)[:300]
+        print(f"Prioritized top {len(stage1_survivors)} most active liquid candidates for deep metadata enrichment.")
 
     # 3. Stage 2 & 3: Parallel Metadata Hybrid Fetch (Fundamentals, Earnings, SEC EDGAR)
     print("Stage 2 & 3: Fetching fundamentals, earnings calendar, and SEC filings...")
