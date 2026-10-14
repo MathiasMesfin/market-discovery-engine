@@ -51,6 +51,7 @@ historical_batch_aggregator.py
 narrative_overlay_research.py
 pead_phase3a_engine.py
 pead_phase3b_engine.py
+pead_intraday_*.py
 portfolio_research_lab.py
 project_vega_synthetic_models.py
 sec_landmine_research.py
