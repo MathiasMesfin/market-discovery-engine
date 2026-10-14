@@ -1151,27 +1151,22 @@ def render_overview_tab():
 """, unsafe_allow_html=True)
 
     # Walkthrough Demo Video Section
-    st.markdown('<div class="overview-section-header">Engine Walkthrough Demo</div>', unsafe_allow_html=True)
+    st.markdown('<div class="overview-section-header">Engine Walkthrough Demonstrations</div>', unsafe_allow_html=True)
 
-    demo_video_path = None
-    for cand in ["assets/demo.mp4", "assets/demo.webm", "assets/demo.mov"]:
-        if os.path.exists(cand):
-            demo_video_path = cand
-            break
+    vtab_prescan, vtab_live = st.tabs(["Pre-Market Morning Scan Demo", "Live Custom Screener Demo"])
+    with vtab_prescan:
+        if os.path.exists("assets/demo.mp4"):
+            st.video("assets/demo.mp4")
+            st.caption("Pre-Market Morning Scan Walkthrough · assets/demo.mp4")
+        else:
+            st.info("Pre-market walkthrough video asset not found.")
 
-    if demo_video_path:
-        st.video(demo_video_path)
-        st.caption(f"Demo Walkthrough Recording · {demo_video_path}")
-    else:
-        st.markdown("""
-<div class="video-placeholder-card">
-    <div class="video-placeholder-title">Demo Walkthrough Video Placeholder</div>
-    <div class="video-placeholder-subtitle">
-        A screen recording placed in the assets directory will render automatically in this container as an interactive video player.
-    </div>
-    <div class="video-placeholder-path">assets/demo.mp4</div>
-</div>
-""", unsafe_allow_html=True)
+    with vtab_live:
+        if os.path.exists("assets/demo_live.mp4"):
+            st.video("assets/demo_live.mp4")
+            st.caption("Live Custom Screener & Batch Deep Scan Walkthrough · assets/demo_live.mp4")
+        else:
+            st.info("Live screener walkthrough video asset not found.")
 
 
     # Quantitative Edge Metrics Reference
@@ -2782,11 +2777,16 @@ with tab_screener:
 
     else:
         st.markdown("""
-        <div style="padding: 36px 16px; text-align: center; color: #9CA3AF; border: 1px dashed #2A2F38; border-radius: 4px; margin-top: 16px;">
+        <div style="padding: 28px 16px; text-align: center; color: #9CA3AF; border: 1px dashed #2A2F38; border-radius: 4px; margin-top: 16px; margin-bottom: 24px;">
             <div style="font-weight: 600; font-size: 14px; color: #F2F4F7; margin-bottom: 4px;">No Active Screening Results</div>
-            <div style="font-size: 13px; color: #6B7280;">Select a market universe in the sidebar and click Run Fast Market Scan to begin, or load a prior run from Saved Watchlists.</div>
+            <div style="font-size: 13px; color: #6B7280;">Select a market universe in the sidebar and click Run Fast Market Scan to begin, or review the walkthrough tutorial below.</div>
         </div>
         """, unsafe_allow_html=True)
+
+        if not is_morning_mode and os.path.exists("assets/demo_live.mp4"):
+            st.markdown('<div class="overview-section-header">Live Custom Screener Walkthrough Demo</div>', unsafe_allow_html=True)
+            st.caption("Step-by-step tutorial on selecting universes, executing Stage 1 fast scans, and processing the Batch Deep Scan queue.")
+            st.video("assets/demo_live.mp4")
 
 # ----------------------------------------------------
 # TAB 2: HISTORICAL SAVED VIEW
