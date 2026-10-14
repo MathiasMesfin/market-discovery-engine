@@ -2,8 +2,8 @@ name: Pre-Market Discovery Batch Scan
 
 on:
   schedule:
-    # Runs at 10:30 UTC (06:30 AM EDT / 05:30 AM EST) Monday through Friday
-    - cron: '30 10 * * 1-5'
+    # Runs at 10:00 UTC (06:00 AM EDT / 05:00 AM EST) Monday through Friday so scans finish before 6:30 AM EDT
+    - cron: '00 10 * * 1-5'
   workflow_dispatch:
     inputs:
       universe:
@@ -58,7 +58,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Market Discovery Bot"
-          git add data/history/daily_discovery_latest*.csv data/history/daily_discovery_latest*.parquet data/history/screener_results_*.csv
+          git add data/history/daily_discovery_latest*.csv data/history/daily_discovery_latest*.parquet
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else

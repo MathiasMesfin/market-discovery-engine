@@ -1231,6 +1231,20 @@ with tab_home:
     render_overview_tab()
 
 
+def get_file_eastern_datetime(file_path):
+    """Converts file modification epoch timestamp to US/Eastern timezone."""
+    try:
+        ts = os.path.getmtime(file_path)
+        from zoneinfo import ZoneInfo
+        eastern = ZoneInfo("America/New_York")
+        return datetime.datetime.fromtimestamp(ts, tz=datetime.timezone.utc).astimezone(eastern)
+    except Exception:
+        try:
+            return datetime.datetime.fromtimestamp(os.path.getmtime(file_path))
+        except Exception:
+            return datetime.datetime.now()
+
+
 def load_latest_precomputed_discovery(universe_name=None):
     """Loads precomputed morning scan from parquet or csv.
     Tries universe-specific file first (e.g. daily_discovery_latest_full.parquet),
@@ -1257,7 +1271,7 @@ def load_latest_precomputed_discovery(universe_name=None):
                 df = pd.read_parquet(path)
             else:
                 df = pd.read_csv(path)
-            mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(path))
+            mod_time = get_file_eastern_datetime(path)
             return df, os.path.basename(path), mod_time
         except Exception:
             continue
@@ -1268,11 +1282,12 @@ def load_latest_precomputed_discovery(universe_name=None):
         try:
             newest = os.path.join(repo_root, "data", "history", hist_files[0])
             df = pd.read_csv(newest)
-            mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(newest))
+            mod_time = get_file_eastern_datetime(newest)
             return df, hist_files[0], mod_time
         except Exception:
             pass
     return None, None, None
+
 
 
 def fetch_single_ticker_deep_dive(ticker, finnhub_key=""):
@@ -1356,7 +1371,7 @@ with tab_screener:
             pre_universe_name = pre_universe_map[pre_universe_choice]
 
             if st.session_state.get('morning_scan_mod_time'):
-                st.caption(f"Updated: {st.session_state.morning_scan_mod_time.strftime('%b %d, %Y at %I:%M %p')}")
+                st.caption(f"Updated: {st.session_state.morning_scan_mod_time.strftime('%b %d, %Y at %I:%M %p %Z')}")
 
             filter_ticker = st.text_input(
                 "Filter Ticker / Company:",
@@ -2050,7 +2065,7 @@ with tab_screener:
             st.caption("Diagnostics Mode: Pre-filtering and catalyst exclusions bypassed.")
 
         if is_morning_mode:
-            mod_label = st.session_state.get('morning_scan_mod_time').strftime('%b %d, %Y at %I:%M %p') if st.session_state.get('morning_scan_mod_time') else "Latest"
+            mod_label = st.session_state.get('morning_scan_mod_time').strftime('%b %d, %Y at %I:%M %p %Z') if st.session_state.get('morning_scan_mod_time') else "Latest"
             selected_uni_label = pre_universe_choice if 'pre_universe_choice' in locals() else "Discovery Pool"
             source_file = st.session_state.get('morning_scan_source_file', '')
             is_fallback = pre_universe_name not in source_file and "latest.p" in source_file if 'pre_universe_name' in locals() and pre_universe_name != 'discovery' else False
@@ -2649,12 +2664,15 @@ with tab_screener:
                 st.caption("Absolute price movement on day of and day following previous earnings releases.")
 
         st.markdown("---")
-        if st.button("Save Results to CSV"):
-            csv_path, msg = save_screening_run(results_df)
-            if csv_path:
-                st.success(msg)
-            else:
-                st.error(msg)
+        csv_data = results_df.to_csv(index=False)
+        timestamp_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        st.download_button(
+            label="Download Research Results (CSV)",
+            data=csv_data,
+            file_name=f"market_discovery_results_{timestamp_str}.csv",
+            mime="text/csv",
+            help="Download the scored opportunity dataset directly to your local machine."
+        )
 
     elif st.session_state.fast_scan_candidates:
         _ds_loaded = st.session_state.get('deep_scan_loaded', False)
@@ -2774,20 +2792,61 @@ with tab_screener:
 # TAB 2: HISTORICAL SAVED VIEW
 # ----------------------------------------------------
 with tab_history:
-    st.markdown("### Saved Screening Runs")
-    saved_files = get_historical_files()
-    if not saved_files:
-        st.info("No saved runs detected in `data/history/` yet.")
-    else:
-        selected_file = st.selectbox("Select Historic Screening CSV File:", options=saved_files)
-        if selected_file:
-            file_path = os.path.join(repo_root, "data", "history", selected_file)
+    st.markdown("### Saved Watchlists & Market Snapshots")
+    st.caption("Inspect previously downloaded screening results or review official daily market snapshots.")
+
+    history_mode = st.radio(
+        "Source:",
+        options=["Upload Saved CSV (Private to you)", "Official Market Snapshots"],
+        horizontal=True
+    )
+
+    if history_mode == "Upload Saved CSV (Private to you)":
+        uploaded_watchlist = st.file_uploader(
+            "Upload any previously downloaded Market Discovery CSV file:",
+            type=["csv"],
+            key="user_uploaded_watchlist"
+        )
+        if uploaded_watchlist is not None:
             try:
-                hist_df = pd.read_csv(file_path)
-                st.markdown(f"#### Saved Results ({len(hist_df)} tickers saved)")
+                hist_df = pd.read_csv(uploaded_watchlist)
+                st.markdown(f"#### Watchlist Overview ({len(hist_df):,} candidates)")
                 st.dataframe(hist_df, hide_index=True, width='stretch')
             except Exception as e:
-                st.error(f"Error loading historical file: {str(e)}")
+                st.error(f"Error loading uploaded watchlist: {str(e)}")
+        else:
+            st.info("Upload any screening CSV downloaded from the Scanner tab to review your custom candidate list.")
+
+    else:
+        # Official daily snapshots
+        snapshot_options = {
+            "Full Market Snapshot": "daily_discovery_latest_full.csv",
+            "Discovery Pool Snapshot": "daily_discovery_latest_discovery.csv",
+            "Sample (50) Snapshot": "daily_discovery_latest_sample.csv",
+            "Test Mode (20) Snapshot": "daily_discovery_latest_test.csv",
+        }
+        available_snapshots = {}
+        for label, fname in snapshot_options.items():
+            fpath = os.path.join(repo_root, "data", "history", fname)
+            if os.path.exists(fpath):
+                mod_dt = get_file_eastern_datetime(fpath)
+                dt_str = mod_dt.strftime('%b %d, %Y') if mod_dt else "Latest"
+                available_snapshots[f"{label} ({dt_str})"] = fpath
+
+        if not available_snapshots:
+            st.info("No official pre-market snapshots found. Snapshots are automatically generated each morning at 6:30 AM EST.")
+        else:
+            selected_snapshot = st.selectbox("Select Official Snapshot:", options=list(available_snapshots.keys()))
+            if selected_snapshot and selected_snapshot in available_snapshots:
+                selected_fpath = available_snapshots[selected_snapshot]
+
+                try:
+                    snap_df = pd.read_csv(selected_fpath)
+                    st.markdown(f"#### {selected_snapshot} ({len(snap_df):,} candidates)")
+                    st.dataframe(snap_df, hide_index=True, width='stretch')
+                except Exception as e:
+                    st.error(f"Error reading snapshot: {str(e)}")
+
 
 # ----------------------------------------------------
 # TAB 3: HISTORICAL EARNINGS EVENT LAB

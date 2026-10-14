@@ -40,6 +40,7 @@ data/history/vega_research_dataset.csv
 data/history/vega_research_dataset.parquet
 data/history/replay_batches/
 data/history/backtests/
+data/history/screener_results_*.csv
 
 # Research/audit scripts (not needed for production app)
 confidence_calibration_audit.py
